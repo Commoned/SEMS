@@ -9,14 +9,14 @@ namespace SEMS.Domain
     internal class Employee
     {
         
-        public Employee(string name, string surname, string title, int id, User user, Address address, Site site, Department? department, Role role, ulong salaryAmount, DateTime employedSince, DateTime employedUntil)
+        public Employee(string name, string surname, string title, int id, User user, Country country, string stateProvince, string zipcode, string city, string street, string streetnumber, Site site, Department? department, Role role, ulong salaryAmount, DateTime employedSince, DateTime employedUntil)
         {
             Name = name;
             Surname = surname;
             Title = title;
             Id = id;
             User = user;
-            Address = address;
+            Address = new Address(country, stateProvince,zipcode,city,street,streetnumber);
             Site = site;
             Department = department;
             Role = role;
