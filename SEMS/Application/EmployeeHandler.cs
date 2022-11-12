@@ -62,7 +62,7 @@ namespace SEMS.Application
                 {
                     throw new Exception("Country does not exist yet");
                 }
-                sites.Add(new Site(name, new Address(countries.Find(x=> x.Name == country),state,zipcode,city,street,streetnum)));
+                sites.Add(new Site(name, countries.Find(x=> x.Name == country),state,zipcode,city,street,streetnum));
                 return true;
             }
             catch (Exception ex)
@@ -72,21 +72,7 @@ namespace SEMS.Application
             }
         }
 
-        public bool createDepartment(string name, string lead,string desc, string accountingUnit)
-        {
-            try
-            {
-                departments.Add(new Department(name, lead, desc, accountingUnit));
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Console.Error.WriteLine(ex.Message);
-                return false;
-            }
-        }
-
-        public bool createUser()
+        public bool createDepartment(string name, Employee employee,string desc, string accountingUnit)
         {
             try
             {
@@ -100,11 +86,20 @@ namespace SEMS.Application
             }
         }
 
-        public bool createEmployee()
+        public bool createEmployee(string name, string surname, string title, string country, string stateProvince, string zipcode, string city, string street, string streetnumber, string site, string department, string role, ulong salaryAmount)
         {
+            int id = 0;
             try
             {
-                employees.Add(new Employee(name, employee, desc, accountingUnit));
+                if (employees.Count >= 1)
+                {
+                    id = employees.Last().Id + 1;
+                }
+                if (!countries.Exists(x => x.Name == country))
+                {
+                    throw new Exception("Country does not exist yet");
+                }
+                employees.Add(new Employee(name, surname, title, id, new User(id.ToString(),"PASSWORD" ),countries.Find(x=> x.Name == country),stateProvince,zipcode,city,street,streetnumber, sites.Find(x => x.Name == site), departments.Find(x => x.Name == department), roles.Find(x => x.Name == role), salaryAmount,DateTime.Now,DateTime.MaxValue));
                 return true;
             }
             catch (Exception ex)
@@ -113,5 +108,7 @@ namespace SEMS.Application
                 return false;
             }
         }
+
+       
     }
 }
