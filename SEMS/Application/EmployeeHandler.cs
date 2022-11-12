@@ -19,6 +19,7 @@ namespace SEMS.Application
         public List<Site> sites = new List<Site>();
         public List<Country> countries = new List<Country>();
         public List<Department> departments = new List<Department>();
+        public List<User> users = new List<User>();
 
         public bool createCountry(string name, string currency, string continent)
         {
@@ -71,11 +72,25 @@ namespace SEMS.Application
             }
         }
 
-        public bool createDepartment(string name, Employee? employee,string desc, string accountingUnit)
+        public bool createDepartment(string name, string lead,string desc, string accountingUnit)
         {
             try
             {
-                departments.Add(new Department(name, employee , desc, accountingUnit));
+                departments.Add(new Department(name, lead, desc, accountingUnit));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        public bool createUser()
+        {
+            try
+            {
+                employees.Add(new Employee(name, employee, desc, accountingUnit));
                 return true;
             }
             catch (Exception ex)
@@ -89,7 +104,7 @@ namespace SEMS.Application
         {
             try
             {
-                departments.Add(new Department(name, employee, desc, accountingUnit));
+                employees.Add(new Employee(name, employee, desc, accountingUnit));
                 return true;
             }
             catch (Exception ex)
