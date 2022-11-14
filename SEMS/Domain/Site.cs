@@ -1,6 +1,6 @@
 ﻿namespace SEMS.Domain
 {
-    internal class Site
+    public class Site
     {
         public Site(string name,Country country, string stateProvince, string zipcode, string city, string street, string streetnumber)
         {

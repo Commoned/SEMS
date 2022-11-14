@@ -35,9 +35,10 @@ namespace SEMS.Domain
         public Site Site { get; set; }
         public Department? Department { get; set; }
         public Role Role { get; set; }
-        public UInt64 SalaryAmount { get; set; } //Amount is calculated in Currency of current Residency and saved in the lowest form of Currency e.g. USD -> Cent
+        public UInt64 SalaryAmount { get; set; } //Amount is calculated in EUR in the lowest form of Currency. 
         public DateTime EmployedSince { get; set; }
         public DateTime EmployedUntil { get; set; }
+
 
 
     }

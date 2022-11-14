@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SEMS.Domain
 {
-    internal class Address
+    public class Address
     {
         public Address(Country country, string stateProvince, string zipcode, string city, string street, string number)
         {
