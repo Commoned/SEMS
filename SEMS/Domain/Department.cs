@@ -1,6 +1,6 @@
 ﻿namespace SEMS.Domain
 {
-    internal class Department
+    public class Department
     {
         public Department(string name, string description, string accountingUnit)
         {

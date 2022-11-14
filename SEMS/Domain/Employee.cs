@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace SEMS.Domain
 {
-    internal class Employee
+    public class Employee
     {
         
-        public Employee(string name, string surname, string title, int id, User user, Country country, string stateProvince, string zipcode, string city, string street, string streetnumber, Site site, Department? department, Role role, ulong salaryAmount, DateTime employedSince, DateTime employedUntil)
+        public Employee(string name, string surname, string title, int id, User user, Country country, string stateProvince, string zipcode, string city, string street, string streetnumber, Site site, Department department, Role role, ulong salaryAmount, DateTime employedSince, DateTime employedUntil)
         {
             Name = name;
             Surname = surname;
@@ -36,7 +36,6 @@ namespace SEMS.Domain
         public Department? Department { get; set; }
         public Role Role { get; set; }
         public UInt64 SalaryAmount { get; set; } //Amount is calculated in Currency of current Residency and saved in the lowest form of Currency e.g. USD -> Cent
-
         public DateTime EmployedSince { get; set; }
         public DateTime EmployedUntil { get; set; }
 
