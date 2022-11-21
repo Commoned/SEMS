@@ -3,20 +3,20 @@ using SEMS.Adapter;
 using SEMS.Application;
 using SEMS.Domain;
 
-ObjectData data = new ObjectData();
-UserEntry userEntry = new ConsoleEntry();
+DataHandler data = new ObjectData();
 
 EmployeeManagement employeeHandler = new EmployeeManagement(data);
 SiteManagement siteHandler = new SiteManagement(data);
-
+DepartmentManagement departmentHandler = new DepartmentManagement(data);
+RoleManagement roleHandler = new RoleManagement(data);
 
 
     
 
 data.addCountry(new Country("Germany","EUR","Europe"));
 data.addSite(siteHandler.newSite());
-data.addDepartment(new Department("KDSCDC", "IT-Security", "0641"));
-data.addRole(new Role("Cyber Defense Engineer", "IT Engineer for Cyber Security", 10));
+data.addDepartment(departmentHandler.newDepartment());
+data.addRole(roleHandler.newRole());
 
 
 data.addEmployee(employeeHandler.newEmployee());

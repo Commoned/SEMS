@@ -8,6 +8,8 @@ namespace SEMS.Application
 {
     internal class ConsoleEntry : UserEntry
     {
+        
+
         public string acceptEntry()
         {
             return Console.ReadLine();

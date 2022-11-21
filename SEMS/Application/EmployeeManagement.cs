@@ -27,6 +27,19 @@ namespace SEMS.Application
         public Site getSite(string name);
         public Role getRole(string name);
 
+        public void addCountry(Country country);
+       
+        public void addDepartment(Department department);
+
+        public void addEmployee(Employee employee);
+
+        public void addUser(User user);
+
+        public void addRole(Role role);
+
+        public void addSite(Site site);
+
+
     }
     internal class EmployeeManagement
     {
@@ -36,7 +49,6 @@ namespace SEMS.Application
         {
             this.dataHandler = dataHandler;
         }
-
         public Employee newEmployee()
         {
             UserEntry userEntry = new ConsoleEntry();
@@ -77,7 +89,6 @@ namespace SEMS.Application
         }
 
         
-
        
     }
 }
