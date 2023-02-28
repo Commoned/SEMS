@@ -23,14 +23,14 @@ namespace SEMS.Application
 
     public interface DataHandler
     {
-        Privilege getPrivilege(string name);
-        Employee getEmployee(string name);
-         User getUser(Employee employee);
-         Department getDepartment(string name);
-           Domain.Site getSite(string name);
-         Role getRole(string name);
+        Privilege getPrivilegeByName(string name);
+        Employee getEmployeeById(int id);
+        User getUser(Employee employee);
+        Department getDepartmentById(int id);
+        Domain.Site getSiteById(int id);
+        Role getRoleById(int id);
 
-         void addPrivilege(Privilege privilege);
+        void addPrivilege(Privilege privilege);
 
         void addDepartment(Department department);
 
@@ -46,7 +46,7 @@ namespace SEMS.Application
     }
     internal static class EmployeeManagement
     {
-        static DataHandler dataHandler = new ObjectData();
+        static DataHandler dataHandler = new Database();
 
         /*public EmployeeManagement(DataHandler dataHandler)
         {
@@ -55,7 +55,11 @@ namespace SEMS.Application
         */
         public static Employee newEmployee()
         {
-            dataHandler.getEmployee("TEST");
+            //dataHandler.getEmployee("TEST");
+            //dataHandler.getEmployeeById(1);
+            //dataHandler.getDepartmentById(1);
+            //dataHandler.getSiteById(1);
+            //dataHandler.getRoleById(1);
 
             /*
             Console.WriteLine("DIESE IST KAKA");

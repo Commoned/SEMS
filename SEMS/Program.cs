@@ -20,7 +20,7 @@ namespace SEMS
         static public void Main(String[] args)
         {
             GuiAdapter page = new MainPage();
-            
+            EmployeeManagement.newEmployee();
             page.invokeGUI();
            
             /*
