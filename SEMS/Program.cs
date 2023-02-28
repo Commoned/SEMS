@@ -23,7 +23,7 @@ namespace SEMS
             
             page.invokeGUI();
            
-
+            /*
 
             DataHandler data = new ObjectData();
 
@@ -43,6 +43,7 @@ namespace SEMS
 
             data.addEmployee(employeeHandler.newEmployee());
             Console.WriteLine("DONE!");
+            */
         }
     }
 }

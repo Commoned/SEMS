@@ -44,16 +44,21 @@ namespace SEMS.Application
 
 
     }
-    internal class EmployeeManagement
+    internal static class EmployeeManagement
     {
-        DataHandler dataHandler;
+        static DataHandler dataHandler = new ObjectData();
 
-        public EmployeeManagement(DataHandler dataHandler)
+        /*public EmployeeManagement(DataHandler dataHandler)
         {
             this.dataHandler = dataHandler;
         }
-        public Employee newEmployee()
+        */
+        public static Employee newEmployee()
         {
+            dataHandler.getEmployee("TEST");
+
+            /*
+            Console.WriteLine("DIESE IST KAKA");
             UserEntry userEntry = new ConsoleEntry();
             IdentificationProvider identificationProvider = new Identification();
             Console.WriteLine("Name:");
@@ -86,8 +91,9 @@ namespace SEMS.Application
             DateTime employedSince = DateTime.UtcNow;
             Console.WriteLine("Employment Until:");
             DateTime employedUntil = DateTime.Parse(userEntry.acceptEntry());
-
-            return new Employee(name, surname, title, id, stateProvince, zipcode, city, street, streetnumber, site, department, role, salaryAmount, employedSince, employedUntil);
+            */
+            //return new Employee(name, surname, title, id, stateProvince, zipcode, city, street, streetnumber, site, department, role, salaryAmount, employedSince, employedUntil);
+            return null;
         }
 
 

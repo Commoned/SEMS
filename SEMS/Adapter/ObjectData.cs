@@ -47,7 +47,7 @@ namespace SEMS.Adapter
 
         public Employee getEmployee(string name)
         {
-
+            Console.WriteLine(name);
             Employee employee = employees.First(x => x.Name == name);
             if (employee == null)
             {

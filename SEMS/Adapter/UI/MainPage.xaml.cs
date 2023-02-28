@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SEMS.Application;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,6 +39,11 @@ namespace SEMS.Adapter
                 Content = new MainPage()
             };
             window.ShowDialog();
+        }
+
+        private void createEmployee(object sender, RoutedEventArgs e)
+        {
+            EmployeeManagement.newEmployee();
         }
     }
 }
