@@ -20,14 +20,14 @@ namespace SEMS.Application
 
     public interface DataHandler
     {
-        public Country getCountry(string name);
+        public Privilege getPrivilege(string name);
         public Employee getEmployee(string name);
-        public User getUser(string name);
+        public User getUser(Employee employee);
         public Department getDepartment(string name);
         public Site getSite(string name);
         public Role getRole(string name);
 
-        public void addCountry(Country country);
+        public void addPrivilege(Privilege privilege);
        
         public void addDepartment(Department department);
 
@@ -60,9 +60,8 @@ namespace SEMS.Application
             Console.WriteLine("Title:");
             string title = userEntry.acceptEntry();
             int id = identificationProvider.provideId();
-            User user = new User(name + "." + surname + id.ToString(),"PASSWORD");
-            Console.WriteLine("Country:");
-            Country country = dataHandler.getCountry(userEntry.acceptEntry());
+           
+      
             Console.WriteLine("stateProvince:");
             string stateProvince = userEntry.acceptEntry();
             Console.WriteLine("Zip:");
@@ -80,12 +79,12 @@ namespace SEMS.Application
             Console.WriteLine("Role:");
             Role role = dataHandler.getRole(userEntry.acceptEntry());
             Console.WriteLine("Salary in EUR/cent:");
-            ulong salaryAmount = ulong.Parse(userEntry.acceptEntry());
+            Salary salaryAmount = new Salary(decimal.Parse(userEntry.acceptEntry()), decimal.Parse(userEntry.acceptEntry()), decimal.Parse(userEntry.acceptEntry()),userEntry.acceptEntry());
             DateTime employedSince = DateTime.UtcNow;
             Console.WriteLine("Employment Until:");
             DateTime employedUntil = DateTime.Parse(userEntry.acceptEntry());
             
-            return new Employee(name, surname,title,id, user, country,stateProvince,zipcode,city,street,streetnumber,site,department,role,salaryAmount,employedSince,employedUntil);
+            return new Employee(name, surname,title,id,stateProvince,zipcode,city,street,streetnumber,site,department,role,salaryAmount,employedSince,employedUntil);
         }
 
         

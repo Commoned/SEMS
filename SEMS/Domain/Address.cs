@@ -8,9 +8,8 @@ namespace SEMS.Domain
 {
     public class Address
     {
-        public Address(Country country, string stateProvince, string zipcode, string city, string street, string number)
+        public Address( string stateProvince, string zipcode, string city, string street, string number)
         {
-            Country = country;
             StateProvince = stateProvince;
             Zipcode = zipcode;
             City = city;
@@ -18,7 +17,7 @@ namespace SEMS.Domain
             Number = number;
         }
 
-        public Country Country { get; set; }
+
         public string StateProvince { get; set; }
         public string Zipcode { get; set; }
         public string City { get; set; }

@@ -22,7 +22,7 @@ namespace SEMS.Application
             Console.WriteLine("Name:");
             string name = userEntry.acceptEntry();
             Console.WriteLine("Country:");
-            Country country = dataHandler.getCountry(userEntry.acceptEntry());
+            
             Console.WriteLine("stateProvince:");
             string stateProvince = userEntry.acceptEntry();
             Console.WriteLine("zipcode:");
@@ -34,7 +34,7 @@ namespace SEMS.Application
             Console.WriteLine("Streetnumber:");
             string streetnumber = userEntry.acceptEntry();
 
-            return new Site(name,country,stateProvince,zipcode,city,street,streetnumber);
+            return new Site(name,stateProvince,zipcode,city,street,streetnumber);
         }
 
 

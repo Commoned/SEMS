@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SEMS.Domain.Employee">
+    <Position X="10.25" Y="1" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAACACBAAABAgEAAEAAAAAQAFAAEAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Employee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SEMS.Domain.Department" Collapsed="true">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQBAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Department.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SEMS.Domain.Privilege" Collapsed="true">
+    <Position X="8" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Privilege.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SEMS.Domain.Role" Collapsed="true">
+    <Position X="1.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Role.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SEMS.Domain.Salary" Collapsed="true">
+    <Position X="5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASAQAAAAAAAAAAAAAAICAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Salary.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SEMS.Domain.Site" Collapsed="true">
+    <Position X="7.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Site.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SEMS.Domain.User" Collapsed="true">
+    <Position X="3.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SEMS.Application.ConsoleEntry" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="1.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Adapter\ConsoleEntry.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SEMS.Application.DepartmentManagement" Collapsed="true">
+    <Position X="7" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Application\DepartmentManagement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SEMS.Application.EmployeeManagement" Collapsed="true">
+    <Position X="1.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Application\EmployeeManagement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SEMS.Application.Identification" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Application\Identification.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SEMS.Application.RoleManagement" Collapsed="true">
+    <Position X="3.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Application\RoleManagement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SEMS.Application.SiteManagement" Collapsed="true">
+    <Position X="1.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Application\SiteManagement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SEMS.Adapter.ObjectData" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YEAAAQADBICBAAAAAIAKAAAgAAAAAAAAQAAAIBAAAAA=</HashCode>
+      <FileName>Adapter\ObjectData.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="SEMS.Application.UserEntry" Collapsed="true">
+    <Position X="5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Application\EmployeeManagement.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SEMS.Application.IdentificationProvider" Collapsed="true">
+    <Position X="3.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Application\EmployeeManagement.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SEMS.Application.DataHandler" Collapsed="true">
+    <Position X="1.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAQADAICBAAAAAIAAAAAgAAAAAAAAQAAAIBAAAAA=</HashCode>
+      <FileName>Application\EmployeeManagement.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

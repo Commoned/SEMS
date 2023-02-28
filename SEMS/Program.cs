@@ -13,7 +13,7 @@ RoleManagement roleHandler = new RoleManagement(data);
 
     
 
-data.addCountry(new Country("Germany","EUR","Europe"));
+
 data.addSite(siteHandler.newSite());
 data.addDepartment(departmentHandler.newDepartment());
 data.addRole(roleHandler.newRole());

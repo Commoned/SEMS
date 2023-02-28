@@ -2,13 +2,13 @@
 {
     public class User
     {
-        public User(string id, string password)
+        public User(Employee employee, string password)
         {
-            Id = id;
+            Employee = employee;
             Password = password;
         }
 
-        public string Id { get; set; }
+        public Employee Employee { get; set; }
 
         public string Password { get; set; }
     }

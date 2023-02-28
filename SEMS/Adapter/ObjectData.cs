@@ -11,7 +11,7 @@ namespace SEMS.Adapter
 {
     public class ObjectData : DataHandler
     {
-        List<Country> countries = new List<Country>();
+        List<Privilege> privileges = new List<Privilege>();
         List<Department> departments = new List<Department>();
         List<Employee> employees = new List<Employee>();
         List<Role> roles = new List<Role>();
@@ -23,15 +23,15 @@ namespace SEMS.Adapter
             
         }
 
-        public Country getCountry(string name)
+        public Privilege getPrivilege(string name)
         {
             
-            Country country = countries.First(x => x.Name == name);
-            if (country == null)
+            Privilege privilege = privileges.First(x => x.Name == name);
+            if (privilege == null)
             {
-                throw new Exception("No Country found!");
+                throw new Exception("No Privilege found!");
             }
-            return country;
+            return privilege;
         }
 
         public Department getDepartment(string name)
@@ -67,13 +67,13 @@ namespace SEMS.Adapter
             return role;
         }
 
-        public User getUser(string id)
+        public User getUser(Employee employee)
         {
             
-            User user = users.First(x => x.Id == id);
+            User user = users.First(x => x.Employee == employee);
             if (user == null)
             {
-                throw new Exception("No Role found!");
+                throw new Exception("No User found!");
             }
             return user;
         }
@@ -89,9 +89,9 @@ namespace SEMS.Adapter
             return site;
         }
 
-        public void addCountry(Country country)
+        public void addPrivilege(Privilege privilege)
         {
-            countries.Add(country);
+            privileges.Add(privilege);
         }
         public void addDepartment(Department department)
         {

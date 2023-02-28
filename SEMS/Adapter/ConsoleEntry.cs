@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace SEMS.Application
 {
     internal class ConsoleEntry : UserEntry
@@ -12,6 +13,7 @@ namespace SEMS.Application
 
         public string acceptEntry()
         {
+            
             return Console.ReadLine();
         }
     }
