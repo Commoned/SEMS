@@ -96,7 +96,7 @@ namespace SEMS.Adapter
             Window window = new Window
             {
                 Title = "SEMS - Employees",
-                Content = new ContentPage(type)
+                Content = new EmployeePage(type)
             };
             window.ShowDialog();
         }

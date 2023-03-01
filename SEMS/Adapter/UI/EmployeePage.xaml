@@ -3,11 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SEMS.Adapter.UI"
+             
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-
+        <CollectionViewSource Source="{Binding TempList}" x:Key="GroupedItems">
+            <CollectionViewSource.GroupDescriptions>
+                <PropertyGroupDescription PropertyName="Zipcode" />
+            </CollectionViewSource.GroupDescriptions>
+        </CollectionViewSource>
         <Color x:Key="SEMSpurple" >#454bf2</Color>
         <Color x:Key="SEMSpurplemid" >#9583f3</Color>
         <Color x:Key="SEMSpurplebright" >#e3d0f3</Color>
@@ -23,19 +27,20 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="0.05*"/>
             <RowDefinition Height="0.15*"/>
+            
             <RowDefinition />
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="1*" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
         <Border Name="MenuBar" Grid.Row="0" Grid.ColumnSpan="3" Background="#aaaaaa">
 
             <StackPanel Orientation="Horizontal">
-                <Button Name="Settings" Click="openSettings" Background="#aaaaaa" Width="50">Settings</Button>
+                <Button Name="Settings" Background="#aaaaaa" Width="50">Settings</Button>
             </StackPanel>
         </Border>
         <Border x:Name="empBack" Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="3">
@@ -47,15 +52,81 @@
                     </LinearGradientBrush.GradientStops>
                 </LinearGradientBrush>
             </Border.Background>
-            <TextBlock Margin="10,0,0,0" FontSize="30" VerticalAlignment="Center" FontWeight="Bold" Foreground="White">Employee Management</TextBlock>
+            <TextBlock Margin="10,0,0,0" FontSize="30" VerticalAlignment="Center" FontWeight="Bold" Foreground="White">SEMS - Simple Employee Management System</TextBlock>
         </Border>
 
 
-        <!--<StackPanel Grid.Row="2" Grid.RowSpan="10">
+        <StackPanel Grid.Row="3">
             <StackPanel.Background>
-                <SolidColorBrush Color="{StaticResource SEMSpurple}"></SolidColorBrush>
+                <SolidColorBrush Color="{StaticResource SEMSpurple}"/>
             </StackPanel.Background>
-        </StackPanel>-->
+            <TextBlock Foreground="White">Search:</TextBlock>
+            <TextBox x:Name="searchBox" Margin="10,3"></TextBox>
+            <Button Content="Search"  x:Name="searchButton" Click="searchData" Margin="10,10"></Button>
+        </StackPanel>
+
+        <Grid Visibility="Visible" x:Name="employeeGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="10">
+            <Grid.Background>
+                <SolidColorBrush Color="white"/>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <ListView Grid.RowSpan="10" Name="employeeList" ItemsSource="{Binding EmployeeCache, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="employeeList_SelectionChanged" SelectionMode="Single">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Background" Value="White"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="Red" />
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Foreground" Value="Red" />
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="StateProvince" Width="50" DisplayMemberBinding="{Binding Path=StateProvince}" />
+                        <GridViewColumn Header="Zipcode" Width="50" DisplayMemberBinding="{Binding Path=Zipcode}" />
+                        <GridViewColumn Header="City" Width="150" DisplayMemberBinding="{Binding Path=City}" />
+                        <GridViewColumn Header="Street" Width="150" DisplayMemberBinding="{Binding Path=Street}" />
+                        <GridViewColumn Header="StreetNumber" Width="150" DisplayMemberBinding="{Binding Path=Number}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <UniformGrid Grid.Column="1" Rows="5" Columns="2" >
+                <UniformGrid Columns="2">
+                    <TextBlock Text="StateProvince:"></TextBlock>
+                    <TextBox x:Name="boxStateProvince"></TextBox>
+                </UniformGrid>
+                <UniformGrid Columns="2">
+                    <TextBlock Text="Zipcode:"></TextBlock>
+                    <TextBox x:Name="boxZipcode"></TextBox>
+                </UniformGrid>
+                <UniformGrid Columns="2">
+                    <TextBlock Text="City:"></TextBlock>
+                    <TextBox x:Name="boxCity"></TextBox>
+                </UniformGrid>
+                <UniformGrid Columns="2">
+                    <TextBlock Text="Street:"></TextBlock>
+                    <TextBox x:Name="boxStreet"></TextBox>
+                </UniformGrid>
+                <UniformGrid Columns="2">
+                    <TextBlock Text="Streetnumber:"></TextBlock>
+                    <TextBox x:Name="boxStreetnumber"></TextBox>
+                </UniformGrid>
+                <Button Content="Save" Click="Save_Click"></Button>
+            </UniformGrid>
+        </Grid>
     </Grid>
 </UserControl>
-    
