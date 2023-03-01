@@ -38,6 +38,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapter\ConsoleEntry.cs" />
+    <Compile Include="Adapter\UI\DepartmentPage.xaml.cs">
+      <DependentUpon>DepartmentPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Adapter\UI\EmployeePage.xaml.cs">
       <DependentUpon>EmployeePage.xaml</DependentUpon>
     </Compile>
@@ -45,6 +48,12 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Adapter\ObjectData.cs" />
+    <Compile Include="Adapter\UI\PrivilegePage.xaml.cs">
+      <DependentUpon>PrivilegePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Adapter\UI\RolePage.xaml.cs">
+      <DependentUpon>RolePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Adapter\UI\SitePage.xaml.cs">
       <DependentUpon>SitePage.xaml</DependentUpon>
     </Compile>
@@ -65,11 +74,23 @@
     <Compile Include="Domain\User.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Adapter\UI\DepartmentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Adapter\UI\EmployeePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Adapter\UI\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Adapter\UI\PrivilegePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Adapter\UI\RolePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

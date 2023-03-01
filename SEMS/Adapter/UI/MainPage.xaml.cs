@@ -61,21 +61,46 @@ namespace SEMS.Adapter
         private void openNextPage(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-
+            Window window;
             string type;
             switch (button.Name)
             {
+                
                 case "employeeButton":
                     type = "employeeGrid";
+                    window = new Window
+                    {
+                        Title = "SEMS - Employees",
+                        Content = new EmployeePage()
+                    };
+                    window.ShowDialog();
                     break;
                 case "siteButton":
                     type = "siteGrid";
+                    window = new Window
+                    {
+                        Title = "SEMS - Employees",
+                        Content = new SitePage()
+                    };
+                    window.ShowDialog();
                     break;
                 case "departmentButton":
                     type = "departmentGrid";
+                    window = new Window
+                    {
+                        Title = "SEMS - Employees",
+                        Content = new DepartmentPage()
+                    };
+                    window.ShowDialog();
                     break;
                 case "roleButton":
                     type = "roleGrid";
+                    window = new Window
+                    {
+                        Title = "SEMS - Employees",
+                        Content = new RolePage()
+                    };
+                    window.ShowDialog();
                     break;
                 case "privilegeButton":
                     type = "privilegeGrid";
@@ -85,9 +110,7 @@ namespace SEMS.Adapter
                     break;
             }
             
-            Thread thread = new Thread(() => newWindow(type));
-            thread.SetApartmentState(ApartmentState.STA);
-            thread.Start();
+            
             GC.Collect();
         }
 
@@ -96,7 +119,7 @@ namespace SEMS.Adapter
             Window window = new Window
             {
                 Title = "SEMS - Employees",
-                Content = new EmployeePage(type)
+                Content = new EmployeePage()
             };
             window.ShowDialog();
         }

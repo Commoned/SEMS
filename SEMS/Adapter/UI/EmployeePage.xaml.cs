@@ -30,20 +30,14 @@ namespace SEMS.Adapter.UI
     {
         
 
-        public EmployeePage(string type)
+        public EmployeePage()
         {
             InitializeComponent();
-            Grid contentGrid = (Grid)this.FindName(type);
-            contentGrid.Visibility = Visibility.Visible;
-            
-            Cache.Instance.EmployeeCache.Add(new Address("BaWü","76227","Karlsruhe","Max-Beckmannstr","43"));
-            Cache.Instance.EmployeeCache.Add(new Address("BaWü", "76227", "Karlsruhe", "Max-Beckmannstr", "43"));
-            Cache.Instance.EmployeeCache.Add(new Address("BaWü", "76227", "Karlsruhe", "Max-Beckmannstr", "43"));
-            Cache.Instance.EmployeeCache.Add(new Address("BaWü", "76227", "Karlsruhe", "Max-Beckmannstr", "43"));
-            Cache.Instance.EmployeeCache.Add(new Address("BaWü", "76227", "Karlsruhe", "Max-Beckmannstr", "43"));
-
+            string test = "test";
+            Cache.Instance.EmployeeCache.Add(new Employee(test,test,test,0,test,test,test,test,test,new Site(test,test,test,test,test,test),new Department(test,test,test),new Role(test,test,0),new Salary(0,0,0,"test")));
+            Cache.Instance.EmployeeCache.Add(new Employee(test, test, test, 0, test, test, test, test, test, new Site(test, test, test, test, test, test), new Department(test, test, test), new Role(test, test, 0), new Salary(0, 0, 0, "test")));
+            Cache.Instance.EmployeeCache.Add(new Employee(test, test, test, 0, test, test, test, test, test, new Site(test, test, test, test, test, test), new Department(test, test, test), new Role(test, test, 0), new Salary(0, 0, 0, "test")));
             this.DataContext = (object)Cache.Instance;
-            
         }
        
         
@@ -53,32 +47,33 @@ namespace SEMS.Adapter.UI
             Debug.WriteLine(cache.EmployeeCache);
         }
         
-
-        public void OnWindowClosing(object sender, CancelEventArgs e)
-        {
-            Thread.CurrentThread.Abort();
-        }
        
 
 
         private void employeeList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Address test = (Address)employeeList.SelectedItem;
-            boxStateProvince.Text = test.StateProvince;
-            boxZipcode.Text = test.Zipcode;
-            boxCity.Text = test.City;
-            boxStreet.Text = test.Street;
-            boxStreetnumber.Text = test.Number;
+            Employee test = (Employee)employeeList.SelectedItem;
+            boxName.Text = test.Name;
+            boxStateProvince.Text = test.Address.StateProvince;
+            boxZipcode.Text = test.Address.Zipcode;
+            boxCity.Text = test.Address.City;
+            boxStreet.Text = test.Address.Street;
+            boxSurname.Text = test.Surname;
+            boxStreetNumber.Text = test.Address.Number;
+            boxRole.Text = test.Role.Name;
+            boxDepartment.Text = test.Department.Name;
+            boxSalBonus.Text = "0";
+            boxCurrency.Text = test.Salary.currency;
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            Address selectedEmployee = (Address)employeeList.SelectedItem;
-            selectedEmployee.StateProvince = boxStateProvince.Text;
-            selectedEmployee.City = boxCity.Text;
-            selectedEmployee.Street = boxStreet.Text;
-            selectedEmployee.Zipcode = boxZipcode.Text;
-            selectedEmployee.Number = boxStreetnumber.Text;
+            Employee selectedEmployee = (Employee)employeeList.SelectedItem;
+            selectedEmployee.Address.StateProvince = boxStateProvince.Text;
+            selectedEmployee.Address.City = boxCity.Text;
+            selectedEmployee.Address.Street = boxStreet.Text;
+            selectedEmployee.Address.Zipcode = boxZipcode.Text;
+            selectedEmployee.Address.Number = boxStreetNumber.Text;
             // TODO Updateing view
         }
     }

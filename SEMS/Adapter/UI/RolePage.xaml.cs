@@ -1,5 +1,4 @@
 ﻿using SEMS.Application;
-using SEMS.Domain;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,15 +14,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SEMS.Domain;
 
 namespace SEMS.Adapter.UI
 {
     /// <summary>
-    /// Interaktionslogik für SitePage.xaml
+    /// Interaktionslogik für RolePage.xaml
     /// </summary>
-    public partial class SitePage : UserControl
+    public partial class RolePage : UserControl
     {
-        public SitePage()
+        public RolePage()
         {
             InitializeComponent();
             this.DataContext = (object)Cache.Instance;
@@ -36,24 +36,14 @@ namespace SEMS.Adapter.UI
         }
         private void employeeList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Site test = (Site)employeeList.SelectedItem;
-            boxName.Text = test.Name;
-            boxStateProvince.Text = test.Address.StateProvince;
-            boxZipcode.Text = test.Address.Zipcode;
-            boxCity.Text = test.Address.City;
-            boxStreet.Text = test.Address.Street;
-            boxStreetNumber.Text = test.Address.Number;
+            
+
 
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             Site selectedEmployee = (Site)employeeList.SelectedItem;
-            selectedEmployee.Address.StateProvince = boxStateProvince.Text;
-            selectedEmployee.Address.City = boxCity.Text;
-            selectedEmployee.Address.Street = boxStreet.Text;
-            selectedEmployee.Address.Zipcode = boxZipcode.Text;
-            selectedEmployee.Address.Number = boxStreetNumber.Text;
             // TODO Updateing view
         }
     }

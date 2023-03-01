@@ -20,6 +20,10 @@ namespace SEMS.Domain
         public decimal bonuses { get; set; }
         public decimal deductions { get; set; }
         public string currency { get; set; }
+
+        public decimal NetSalary => CalculateNetSalary();
+
+
         public decimal CalculateNetSalary()
         {
             return baseSalary + bonuses - deductions;
