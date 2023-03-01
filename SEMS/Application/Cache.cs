@@ -19,10 +19,10 @@ namespace SEMS.Application
 
         private Cache()
         {
-            EmployeeCache = new ObservableCollection<Address>();
+            EmployeeCache = new ObservableCollection<Employee>();
         }
 
-        public ObservableCollection<Address> EmployeeCache { get; private set; }
+        public ObservableCollection<Employee> EmployeeCache { get; private set; }
         
 
 
