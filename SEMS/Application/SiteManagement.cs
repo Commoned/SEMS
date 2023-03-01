@@ -25,8 +25,10 @@ namespace SEMS.Application
             string name = userEntry.acceptEntry();
             Console.WriteLine("Country:");
 
-            Console.WriteLine("stateProvince:");
-            string stateProvince = userEntry.acceptEntry();
+            Console.WriteLine("country:");
+            string country = userEntry.acceptEntry();
+            Console.WriteLine("state:");
+            string state = userEntry.acceptEntry();
             Console.WriteLine("zipcode:");
             string zipcode = userEntry.acceptEntry();
             Console.WriteLine("City:");
@@ -36,7 +38,7 @@ namespace SEMS.Application
             Console.WriteLine("Streetnumber:");
             string streetnumber = userEntry.acceptEntry();
 
-            return new Domain.Site(name, stateProvince, zipcode, city, street, streetnumber);
+            return new Domain.Site(name, country, state, zipcode, city, street, streetnumber);
         }
     }
 }
