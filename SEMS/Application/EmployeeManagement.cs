@@ -56,7 +56,7 @@ namespace SEMS.Application
         public static Employee newEmployee()
         {
             //dataHandler.getEmployee("TEST");
-            //dataHandler.getEmployeeById(1);
+            dataHandler.getEmployeeById(1);
             //dataHandler.getDepartmentById(1);
             //dataHandler.getSiteById(1);
             //dataHandler.getRoleById(1);
@@ -74,8 +74,10 @@ namespace SEMS.Application
             int id = identificationProvider.provideId();
 
 
-            Console.WriteLine("stateProvince:");
-            string stateProvince = userEntry.acceptEntry();
+            Console.WriteLine("country:");
+            string country = userEntry.acceptEntry();
+            Console.WriteLine("state:");
+            string state = userEntry.acceptEntry();
             Console.WriteLine("Zip:");
             string zipcode = userEntry.acceptEntry();
             Console.WriteLine("City:");
@@ -96,7 +98,7 @@ namespace SEMS.Application
             Console.WriteLine("Employment Until:");
             DateTime employedUntil = DateTime.Parse(userEntry.acceptEntry());
             */
-            //return new Employee(name, surname, title, id, stateProvince, zipcode, city, street, streetnumber, site, department, role, salaryAmount, employedSince, employedUntil);
+            //return new Employee(name, surname, title, id, country, state, zipcode, city, street, streetnumber, site, department, role, salaryAmount, employedSince, employedUntil);
             return null;
         }
 
