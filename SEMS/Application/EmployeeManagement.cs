@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
@@ -23,30 +24,36 @@ namespace SEMS.Application
 
     public interface DataHandler
     {
-        Privilege getPrivilege(string name);
-        Employee getEmployee(string name);
-         User getUser(Employee employee);
-         Department getDepartment(string name);
-           Domain.Site getSite(string name);
-         Role getRole(string name);
+        Privilege getPrivilegeByName(string name);
+        Employee getEmployeeById(int id);
+        ObservableCollection<Employee> getEmployeesByName(string name);
+        ObservableCollection<Employee> getEmployeesBySurname(string surname);
+        ObservableCollection<Employee> getEmployeesByFullname(string name, string surname);
+        ObservableCollection<Employee> getEmployeesBySiteId(int siteId);
+        ObservableCollection<Employee> getEmployeesByDepartmentId(int departmentId);
+        ObservableCollection<Employee> getEmployeesByRoleId(int roleId);
+        User getUser(Employee employee);
+        Department getDepartmentById(int id);
+        ObservableCollection<Department> getDepartmentsByName(string name);
+        ObservableCollection<Department> getDepartmentsByAccountingUnit(string accountingunit);
+        Domain.Site getSiteById(int id);
+        ObservableCollection<Domain.Site> getSitesByName(string name);
+        ObservableCollection<Domain.Site> getSitesByCountry(string country);
+        ObservableCollection<Domain.Site> getSitesByState(string state);
+        ObservableCollection<Domain.Site> getSitesByZipcode(string zipcode);
+        Role getRoleById(int id);
+        ObservableCollection<Role> getRolesByName(string name);
 
-         void addPrivilege(Privilege privilege);
-
+        void addPrivilege(Privilege privilege);
         void addDepartment(Department department);
-
         void addEmployee(Employee employee);
-
         void addUser(User user);
-
         void addRole(Role role);
-
         void addSite(Domain.Site site);
-
-
     }
     internal static class EmployeeManagement
     {
-        static DataHandler dataHandler = new ObjectData();
+        static DataHandler dataHandler = new Database();
 
         /*public EmployeeManagement(DataHandler dataHandler)
         {
@@ -55,7 +62,27 @@ namespace SEMS.Application
         */
         public static Employee newEmployee()
         {
-            dataHandler.getEmployee("TEST");
+            //dataHandler.getEmployee("TEST");
+            //Employee myemployee = dataHandler.getEmployeesByName("Tim").First();
+            //Employee myemployee = dataHandler.getEmployeesBySurname("Frie").First();
+            //Employee myemployee = dataHandler.getEmployeesByFullname("T","Fr").First();
+            //Employee myemployee = dataHandler.getEmployeesBySiteId(1).First();
+            //Employee myemployee = dataHandler.getEmployeesByDepartmentId(1).First();
+            //Employee myemployee = dataHandler.getEmployeesByRoleId(1).First();
+            //Console.WriteLine(myemployee.Salary.baseSalary);
+            //dataHandler.getEmployeeById(1);
+            //dataHandler.getDepartmentById(1);
+            //dataHandler.getDepartmentsByName("Gebäude 10");
+            //dataHandler.getDepartmentsByAccountingUnit("187");
+            //dataHandler.getSiteById(1);
+            //Domain.Site mysite = dataHandler.getSitesByName("Atruvia").First();
+            //Domain.Site mysite = dataHandler.getSitesByCountry("GER").First();
+            //Domain.Site mysite = dataHandler.getSitesByState("BaWü").First();
+            //Domain.Site mysite = dataHandler.getSitesByZipcode("76").First();
+            //Console.WriteLine(mysite.Address.Zipcode);
+            //dataHandler.getRoleById(1);
+            //Role myrole = dataHandler.getRolesByName("Dual").First();
+            //Console.WriteLine(myrole.Description);
 
             /*
             Console.WriteLine("DIESE IST KAKA");
@@ -70,8 +97,10 @@ namespace SEMS.Application
             int id = identificationProvider.provideId();
 
 
-            Console.WriteLine("stateProvince:");
-            string stateProvince = userEntry.acceptEntry();
+            Console.WriteLine("country:");
+            string country = userEntry.acceptEntry();
+            Console.WriteLine("state:");
+            string state = userEntry.acceptEntry();
             Console.WriteLine("Zip:");
             string zipcode = userEntry.acceptEntry();
             Console.WriteLine("City:");
@@ -92,7 +121,7 @@ namespace SEMS.Application
             Console.WriteLine("Employment Until:");
             DateTime employedUntil = DateTime.Parse(userEntry.acceptEntry());
             */
-            //return new Employee(name, surname, title, id, stateProvince, zipcode, city, street, streetnumber, site, department, role, salaryAmount, employedSince, employedUntil);
+            //return new Employee(name, surname, title, id, country, state, zipcode, city, street, streetnumber, site, department, role, salaryAmount, employedSince, employedUntil);
             return null;
         }
 

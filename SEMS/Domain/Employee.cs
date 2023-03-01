@@ -9,13 +9,16 @@ namespace SEMS.Domain
     public class Employee
     {
         
-        public Employee(string name, string surname, string title, int id, string stateProvince, string zipcode, string city, string street, string streetnumber, Site site, Department department, Role role, Salary salary)
+
+        public Employee(string name, string surname, string title, Privilege privilege, int id, string country, string state, string zipcode, string city, string street, string streetnumber, Site site, Department department, Role role, Salary salary)
+
         {
             Name = name;
             Surname = surname;
             Title = title;
             Id = id;
-            Address = new Address(stateProvince,zipcode,city,street,streetnumber);
+            Privilege = privilege;
+            Address = new Address(country,state,zipcode,city,street,streetnumber);
             Site = site;
             Department = department;
             Role = role;
@@ -26,7 +29,7 @@ namespace SEMS.Domain
         public string Surname { get; set; }
         public string Title { get ; set; }
         public int Id { get; set; }
-        public List<Privilege> Privileges { get; set; }
+        public Privilege Privilege { get; set; }
         public Address Address { get; set; }
         public Site Site { get; set; }
         public Department Department { get; set; }
