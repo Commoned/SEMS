@@ -38,9 +38,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapter\ConsoleEntry.cs" />
-    <Compile Include="Adapter\UI\ContentPage.xaml.cs">
-      <DependentUpon>ContentPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Adapter\UI\EmployeePage.xaml.cs">
       <DependentUpon>EmployeePage.xaml</DependentUpon>
     </Compile>
@@ -48,6 +45,10 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Adapter\ObjectData.cs" />
+    <Compile Include="Adapter\UI\SitePage.xaml.cs">
+      <DependentUpon>SitePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Application\Cache.cs" />
     <Compile Include="Application\DepartmentManagement.cs" />
     <Compile Include="Application\EmployeeManagement.cs" />
     <Compile Include="Application\Identification.cs" />
@@ -64,15 +65,15 @@
     <Compile Include="Domain\User.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Adapter\UI\ContentPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Adapter\UI\EmployeePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Adapter\UI\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Adapter\UI\SitePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
