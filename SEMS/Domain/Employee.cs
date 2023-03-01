@@ -9,7 +9,9 @@ namespace SEMS.Domain
     public class Employee
     {
         
+
         public Employee(string name, string surname, string title, Privilege privilege, int id, string country, string state, string zipcode, string city, string street, string streetnumber, Site site, Department department, Role role, Salary salary)
+
         {
             Name = name;
             Surname = surname;

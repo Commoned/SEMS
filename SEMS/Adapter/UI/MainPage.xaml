@@ -5,18 +5,164 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SEMS.Adapter"
              mc:Ignorable="d" 
+             d:FontFamily="Franklin Gothic"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+
+        <Color x:Key="SEMSpurple" >#454bf2</Color>
+        <Color x:Key="SEMSpurplemid" >#9583f3</Color>
+        <Color x:Key="SEMSpurplebright" >#e3d0f3</Color>
+        <Color x:Key="SEMSrose" >#f48bce</Color>
+        <Color x:Key="SEMSyellow" >#f4ee97</Color>
+        <Color x:Key="SEMSyellowmid" >#f9f39d</Color>
+        <Color x:Key="SEMSyellowbright" >#fdfa9f</Color>
+        <Color x:Key="SEMSrosemid" >#f9b4d1</Color>
+        <Color x:Key="SEMSrosebright" >#fde1d2</Color>
+    </UserControl.Resources>
     <Grid>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="0.05*"/>
+            <RowDefinition Height="0.15*"/>
             <RowDefinition />
-            
-        </Grid.RowDefinitions>
 
-        <Border Grid.Row="0" Background="Red">
-            
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Border Name="MenuBar" Grid.Row="0" Grid.ColumnSpan="3" Background="#aaaaaa">
+
+            <StackPanel Orientation="Horizontal">
+                <Button Name="Settings" Click="openSettings" Background="#aaaaaa" Width="50">Settings</Button>
+            </StackPanel>
         </Border>
-        
-        
+        <Border x:Name="empBack" Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="3">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0 0" EndPoint="1 0">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStop Offset="0.1" Color="{StaticResource SEMSpurple}" />
+                        <GradientStop Offset="2" Color="{StaticResource SEMSrose}" />
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock Margin="10,0,0,0" FontSize="30" VerticalAlignment="Center" FontWeight="Bold" Foreground="White">SEMS - Simple Employee Management System</TextBlock>
+        </Border>
+
+
+        <Grid Visibility="Visible" x:Name="ChoiceGrid" Grid.Row="2" Grid.ColumnSpan="10">
+            <Grid.Background>
+                <SolidColorBrush Color="white"/>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="employeeButton" Click="openNextPage" Grid.Row="1" Grid.Column="1" Content="Employees" Foreground="White" FontSize="20" BorderThickness="0">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0 0" EndPoint="1 1">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStop Offset="0.1" Color="{StaticResource SEMSrose}" />
+                            <GradientStop Offset="1" Color="{StaticResource SEMSyellow}" />
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.BitmapEffect>
+                    <DropShadowBitmapEffect Color="Black" Direction="320" Softness="1" ShadowDepth="-10" Opacity="0.5" />
+                </Button.BitmapEffect>
+            </Button>
+            <Button x:Name="departmentButton" Click="openNextPage" Grid.Row="1" Grid.Column="3" Content="Departments" Foreground="White" FontSize="20" BorderThickness="0">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0 0" EndPoint="1 1">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStop Offset="0.1" Color="{StaticResource SEMSyellow}" />
+                            <GradientStop Offset="1" Color="{StaticResource SEMSpurplemid}" />
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.BitmapEffect>
+                    <DropShadowBitmapEffect Color="Black" Direction="320" Softness="1" ShadowDepth="-10" Opacity="0.5" />
+                </Button.BitmapEffect>
+            </Button>
+            <Button x:Name="siteButton" Click="openNextPage" Grid.Row="1" Grid.Column="5" Content="Sites" Foreground="White" FontSize="20" BorderThickness="0">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0 0" EndPoint="1 1">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStop Offset="0.1" Color="{StaticResource SEMSpurplemid}" />
+                            <GradientStop Offset="1" Color="{StaticResource SEMSrose}" />
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.BitmapEffect>
+                    <DropShadowBitmapEffect Color="Black" Direction="320" Softness="1" ShadowDepth="-10" Opacity="0.5" />
+                </Button.BitmapEffect>
+            </Button>
+            <Button x:Name="roleButton" Click="openNextPage" Grid.Row="3" Grid.Column="2" Content="Roles" Foreground="White" FontSize="20" BorderThickness="0">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0 0" EndPoint="1 1">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStop Offset="0.1" Color="{StaticResource SEMSyellow}" />
+                            <GradientStop Offset="1" Color="{StaticResource SEMSpurplemid}" />
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.BitmapEffect>
+                    <DropShadowBitmapEffect Color="Black" Direction="320" Softness="1" ShadowDepth="-10" Opacity="0.5" />
+                </Button.BitmapEffect>
+            </Button>
+            <Button x:Name="privilegeButton" Click="openNextPage" Grid.Row="3" Grid.Column="4" Content="Privileges" Foreground="White" FontSize="20" BorderThickness="0">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0 0" EndPoint="1 1">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStop Offset="0.1" Color="{StaticResource SEMSpurplemid}" />
+                            <GradientStop Offset="1" Color="{StaticResource SEMSrose}" />
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.BitmapEffect>
+                    <DropShadowBitmapEffect Color="Black" Direction="320" Softness="1" ShadowDepth="-10" Opacity="0.5" />
+                </Button.BitmapEffect>
+            </Button>
+        </Grid>
+
     </Grid>
-</UserControl>
+    </UserControl>

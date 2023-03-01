@@ -1,0 +1,123 @@
+﻿<UserControl x:Class="SEMS.Adapter.UI.RolePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SEMS.Adapter.UI"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <CollectionViewSource Source="{Binding TempList}" x:Key="GroupedItems">
+            <CollectionViewSource.GroupDescriptions>
+                <PropertyGroupDescription PropertyName="Zipcode" />
+            </CollectionViewSource.GroupDescriptions>
+        </CollectionViewSource>
+        <Color x:Key="SEMSpurple" >#454bf2</Color>
+        <Color x:Key="SEMSpurplemid" >#9583f3</Color>
+        <Color x:Key="SEMSpurplebright" >#e3d0f3</Color>
+        <Color x:Key="SEMSrose" >#f48bce</Color>
+        <Color x:Key="SEMSyellow" >#f4ee97</Color>
+        <Color x:Key="SEMSyellowmid" >#f9f39d</Color>
+        <Color x:Key="SEMSyellowbright" >#fdfa9f</Color>
+        <Color x:Key="SEMSrosemid" >#f9b4d1</Color>
+        <Color x:Key="SEMSrosebright" >#fde1d2</Color>
+    </UserControl.Resources>
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.05*"/>
+            <RowDefinition Height="0.15*"/>
+
+            <RowDefinition />
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Border Name="MenuBar" Grid.Row="0" Grid.ColumnSpan="3" Background="#aaaaaa">
+
+            <StackPanel Orientation="Horizontal">
+                <Button Name="Settings" Background="#aaaaaa" Width="50">Settings</Button>
+            </StackPanel>
+        </Border>
+        <Border x:Name="empBack" Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="3">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0 0" EndPoint="1 0">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStop Offset="0.1" Color="{StaticResource SEMSpurple}" />
+                        <GradientStop Offset="2" Color="{StaticResource SEMSrose}" />
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock Margin="10,0,0,0" FontSize="30" VerticalAlignment="Center" FontWeight="Bold" Foreground="White">SEMS - Simple Employee Management System</TextBlock>
+        </Border>
+
+
+        <StackPanel Grid.Row="3">
+            <StackPanel.Background>
+                <SolidColorBrush Color="{StaticResource SEMSpurple}"/>
+            </StackPanel.Background>
+            <TextBlock Foreground="White">Search:</TextBlock>
+            <TextBox x:Name="searchBox" Margin="10,3"></TextBox>
+            <Button Content="Search"  x:Name="searchButton" Click="searchData" Margin="10,10"></Button>
+        </StackPanel>
+
+        <Grid Visibility="Visible" x:Name="employeeGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="10">
+            <Grid.Background>
+                <SolidColorBrush Color="white"/>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0.5*"/>
+            </Grid.ColumnDefinitions>
+            <ListView Grid.RowSpan="10" Name="employeeList" ItemsSource="{Binding EmployeeCache, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="employeeList_SelectionChanged" SelectionMode="Single">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Background" Value="White"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="Red" />
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Foreground" Value="Red" />
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Id" Width="100" DisplayMemberBinding="{Binding Path=Id}" />
+                        <GridViewColumn Header="Name" Width="100" DisplayMemberBinding="{Binding Path=Name}" />
+                        <GridViewColumn Header="Description" Width="100" DisplayMemberBinding="{Binding Path=Description}" />
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <ItemsControl Grid.Column="1">
+                <UniformGrid VerticalAlignment="Top"  Columns="2">
+                    <TextBlock Text="Ide:"></TextBlock>
+                    <TextBox x:Name="boxId"></TextBox>
+                </UniformGrid>
+                <UniformGrid VerticalAlignment="Top"  Columns="2">
+                    <TextBlock Text="Name:"></TextBlock>
+                    <TextBox x:Name="boxName"></TextBox>
+                </UniformGrid>
+                <StackPanel VerticalAlignment="Top" >
+                    <TextBlock Text="Description:"></TextBlock>
+                    <TextBox x:Name="boxDescription" TextWrapping="Wrap" Height="200"></TextBox>
+                </StackPanel>
+                <Button Content="Save" Click="Save_Click"></Button>
+            </ItemsControl>
+
+        </Grid>
+    </Grid>
+</UserControl>
