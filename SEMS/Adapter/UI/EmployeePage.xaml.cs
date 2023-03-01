@@ -34,9 +34,6 @@ namespace SEMS.Adapter.UI
         {
             InitializeComponent();
             string test = "test";
-            Cache.Instance.EmployeeCache.Add(new Employee(test,test,test,0,test,test,test,test,test,new Site(test,test,test,test,test,test),new Department(test,test,test),new Role(test,test,0),new Salary(0,0,0,"test")));
-            Cache.Instance.EmployeeCache.Add(new Employee(test, test, test, 0, test, test, test, test, test, new Site(test, test, test, test, test, test), new Department(test, test, test), new Role(test, test, 0), new Salary(0, 0, 0, "test")));
-            Cache.Instance.EmployeeCache.Add(new Employee(test, test, test, 0, test, test, test, test, test, new Site(test, test, test, test, test, test), new Department(test, test, test), new Role(test, test, 0), new Salary(0, 0, 0, "test")));
             this.DataContext = (object)Cache.Instance;
         }
        
@@ -54,7 +51,7 @@ namespace SEMS.Adapter.UI
         {
             Employee test = (Employee)employeeList.SelectedItem;
             boxName.Text = test.Name;
-            boxStateProvince.Text = test.Address.StateProvince;
+            //boxStateProvince.Text = test.Address.StateProvince;
             boxZipcode.Text = test.Address.Zipcode;
             boxCity.Text = test.Address.City;
             boxStreet.Text = test.Address.Street;
@@ -69,7 +66,7 @@ namespace SEMS.Adapter.UI
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             Employee selectedEmployee = (Employee)employeeList.SelectedItem;
-            selectedEmployee.Address.StateProvince = boxStateProvince.Text;
+            //selectedEmployee.Address.StateProvince = boxStateProvince.Text;
             selectedEmployee.Address.City = boxCity.Text;
             selectedEmployee.Address.Street = boxStreet.Text;
             selectedEmployee.Address.Zipcode = boxZipcode.Text;
