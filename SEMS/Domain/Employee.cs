@@ -25,6 +25,20 @@ namespace SEMS.Domain
             Salary = salary;
         }
 
+        public Employee(string name, string surname, string title, Privilege privilege, string country, string state, string zipcode, string city, string street, string streetnumber, Site site, Department department, Role role, Salary salary)
+
+        {
+            Name = name;
+            Surname = surname;
+            Title = title;
+            Privilege = privilege;
+            Address = new Address(country, state, zipcode, city, street, streetnumber);
+            Site = site;
+            Department = department;
+            Role = role;
+            Salary = salary;
+        }
+
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Title { get ; set; }

@@ -44,12 +44,11 @@ namespace SEMS.Application
         Role getRoleById(int id);
         ObservableCollection<Role> getRolesByName(string name);
 
-        void addPrivilege(Privilege privilege);
-        void addDepartment(Department department);
-        void addEmployee(Employee employee);
-        void addUser(User user);
-        void addRole(Role role);
-        void addSite(Domain.Site site);
+        bool addEmployee(Employee employee);
+        bool addUser(User user);
+        bool addDepartment(Department department);
+        bool addSite(Domain.Site site);
+        bool addRole(Role role);
     }
     internal static class EmployeeManagement
     {
@@ -83,6 +82,10 @@ namespace SEMS.Application
             //dataHandler.getRoleById(1);
             //Role myrole = dataHandler.getRolesByName("Dual").First();
             //Console.WriteLine(myrole.Description);
+            //Domain.Role myrole = new Role("Student", "Absolut faul");
+            //Console.WriteLine(dataHandler.addRole(myrole));
+            //Domain.Site site = new Domain.Site(name: "Telekom", country: "GER", state: "Bayern", zipcode: "80331", city: "München", street: "Haupstraße", streetnumber: "1");
+            //Console.WriteLine(dataHandler.addSite(site));
 
             /*
             Console.WriteLine("DIESE IST KAKA");

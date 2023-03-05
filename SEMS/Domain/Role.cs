@@ -8,6 +8,11 @@
             Description = description;
             Id = id;
         }
+        public Role(string name, string description)
+        {
+            Name = name;
+            Description = description;
+        }
 
         public int Id { get; set; }
         public string Name { get; set; }
