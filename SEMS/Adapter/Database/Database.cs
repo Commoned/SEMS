@@ -556,34 +556,145 @@ namespace SEMS.Adapter
             return roles;
         }
 
-        public void addPrivilege(Privilege privilege)
+
+
+        public bool addEmployee(Employee employee)
         {
-            return;
+            using (var connection = new SqliteConnection(dblocation))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText =
+                @"
+                INSERT INTO sites (name, surname, title, privilege, country, state, zipcode, city, street, streetnumber, site_id, department_id, role_id, basesalary, bonus, deduction, currency)
+                VALUES ($myname, $mysurname, $mytitle, $myprivilege, $mycountry, $mystate, $myzipcode, $mycity, $mystreet, $mystreetnumber, $mysite_id, $mydepartment_id, $myrole_id, $mybasesalary, $mybonus, $mydeduction, $mycurrency)
+                ";
+
+                command.Parameters.AddWithValue("$myname", employee.Name);
+                command.Parameters.AddWithValue("$mysurname", employee.Surname);
+                command.Parameters.AddWithValue("$mytitle", employee.Title);
+                command.Parameters.AddWithValue("$myprivilege", employee.Privilege);
+                command.Parameters.AddWithValue("$mycountry", employee.Address.Country);
+                command.Parameters.AddWithValue("$mystate", employee.Address.State);
+                command.Parameters.AddWithValue("$myzipcode", employee.Address.Zipcode);
+                command.Parameters.AddWithValue("$mycity", employee.Address.City);
+                command.Parameters.AddWithValue("$mystreet", employee.Address.Street);
+                command.Parameters.AddWithValue("$mystreetnumber", employee.Address.Number);
+                command.Parameters.AddWithValue("$mysite_id", employee.Site.Id);
+                command.Parameters.AddWithValue("$mydepartment_id", employee.Department.Id);
+                command.Parameters.AddWithValue("$myrole_id", employee.Role.Id);
+                command.Parameters.AddWithValue("$mybasesalary", employee.Salary.baseSalary);
+                command.Parameters.AddWithValue("$mybonus", employee.Salary.bonuses);
+                command.Parameters.AddWithValue("$mydeduction", employee.Salary.deductions);
+                command.Parameters.AddWithValue("$mycurrency", employee.Salary.currency);
+
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch
+                {
+                    return false;
+                }
+                return true;
+            }
         }
 
-        public void addDepartment(Department department)
+        public bool addUser(User user)
         {
-            return;
+            return false;
         }
 
-        public void addEmployee(Employee employee)
+        public bool addDepartment(Department department)
         {
-            return;
+            using (var connection = new SqliteConnection(dblocation))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText =
+                @"
+                INSERT INTO departments (name, description, accountingunit)
+                VALUES ($myname, $mydescription, $myaccountingunit)
+                ";
+
+                command.Parameters.AddWithValue("$myname", department.Name);
+                command.Parameters.AddWithValue("$mydescription", department.Description);
+                command.Parameters.AddWithValue("$myaccountingunit", department.AccountingUnit);
+
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch
+                {
+                    return false;
+                }
+                return true;
+            }
         }
 
-        public void addUser(User user)
+        public bool addSite(Site site)
         {
-            return;
+            using (var connection = new SqliteConnection(dblocation))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText =
+                @"
+                INSERT INTO sites (name, country, state, zipcode, city, street, streetnumber)
+                VALUES ($myname, $mycountry, $mystate, $myzipcode, $mycity, $mystreet, $mystreetnumber)
+                ";
+
+                command.Parameters.AddWithValue("$myname", site.Name);
+                command.Parameters.AddWithValue("$mycountry", site.Address.Country);
+                command.Parameters.AddWithValue("$mystate", site.Address.State);
+                command.Parameters.AddWithValue("$myzipcode", site.Address.Zipcode);
+                command.Parameters.AddWithValue("$mycity", site.Address.City);
+                command.Parameters.AddWithValue("$mystreet", site.Address.Street);
+                command.Parameters.AddWithValue("$mystreetnumber", site.Address.Number);
+
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch
+                {
+                    return false;
+                }
+                return true;
+            }
         }
 
-        public void addRole(Role role)
+        public bool addRole(Role role)
         {
-            return;
+            using (var connection = new SqliteConnection(dblocation))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText =
+                @"
+                INSERT INTO roles (name, description)
+                VALUES ($myname, $mydescription)
+                ";
+
+                command.Parameters.AddWithValue("$myname", role.Name);
+                command.Parameters.AddWithValue("$mydescription", role.Description);
+
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch
+                {
+                    return false;
+                }
+                return true;
+            }
         }
 
-        public void addSite(Site site)
-        {
-            return;
-        }
     }
 }
