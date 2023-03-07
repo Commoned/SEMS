@@ -868,5 +868,117 @@ namespace SEMS.Adapter
                 return true;
             }
         }
+
+        
+
+        public bool deleteEmployee(Employee employee)
+        {
+            using (var connection = new SqliteConnection(dblocation))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText =
+                @"
+                DELETE FROM employees
+                WHERE employee_id = $myemployee_id
+                ";
+                command.Parameters.AddWithValue("$myemployee_id", employee.Id);
+
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        public bool deleteUser(User user)
+        {
+            return false;
+        }
+
+        public bool deleteDepartment(Department department)
+        {
+            using (var connection = new SqliteConnection(dblocation))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText =
+                @"
+                DELETE FROM departments
+                WHERE department_id = $mydepartment_id
+                ";
+                command.Parameters.AddWithValue("$mydepartment_id", department.Id);
+
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        public bool deleteSite(Site site)
+        {
+            using (var connection = new SqliteConnection(dblocation))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText =
+                @"
+                DELETE FROM sites
+                WHERE site_id = $mysite_id
+                ";
+                command.Parameters.AddWithValue("$mysite_id", site.Id);
+
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        public bool deleteRole(Role role)
+        {
+            using (var connection = new SqliteConnection(dblocation))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText =
+                @"
+                DELETE FROM roles
+                WHERE role_id = $myrole_id
+                ";
+
+                command.Parameters.AddWithValue("$myrole_id", role.Id);
+
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
     }
 }

@@ -56,6 +56,12 @@ namespace SEMS.Application
         bool updateDepartment(Department department);
         bool updateSite(Domain.Site site);
         bool updateRole(Role role);
+
+        bool deleteEmployee(Employee employee);
+        bool deleteUser(User user);
+        bool deleteDepartment(Department department);
+        bool deleteSite(Domain.Site site);
+        bool deleteRole(Role role);
     }
     internal static class EmployeeManagement
     {
@@ -69,7 +75,7 @@ namespace SEMS.Application
         public static bool newEmployee(string name, string surname, string title, Privilege privilege, string country, string state, string zipcode, string city, string street, string streetnumber, Domain.Site site, Department department, Role role, Salary salary)
         {
 
-            Debug.Write("Creating Employee");
+            Debug.WriteLine("Creating Employee");
             Employee newEmp = new Employee(name,surname,title,privilege,country,state,zipcode,city,street,streetnumber,site,department,role,salary);
             dataHandler.addEmployee(newEmp);
             return true;
@@ -78,14 +84,14 @@ namespace SEMS.Application
 
         public static bool updateEmployee(Employee updateEmp)
         {
-            Debug.Write("Updating Employee");
+            Debug.WriteLine("Updating Employee");
             dataHandler.updateEmployee(updateEmp);
             return true;
         }
-        public static bool deleteEmployee()
+        public static bool deleteEmployee(Employee employee)
         {
-            Debug.Write("Deleting Employee");
-            return true;
+            Debug.WriteLine($"Deleting Employee id={employee.Id}");
+            return dataHandler.deleteEmployee(employee);
         }
 
     }
