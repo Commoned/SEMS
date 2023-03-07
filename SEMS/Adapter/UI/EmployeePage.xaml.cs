@@ -20,6 +20,7 @@ using SEMS.Domain;
 using System.Runtime.CompilerServices;
 using SEMS.Application;
 using System.Security.Cryptography;
+using System.Windows.Controls.Primitives;
 
 namespace SEMS.Adapter.UI
 {
@@ -28,12 +29,11 @@ namespace SEMS.Adapter.UI
     /// </summary>
     public partial class EmployeePage : UserControl
     {
-        
+        DataHandler dataHandler = new Database();
 
         public EmployeePage()
         {
             InitializeComponent();
-            string test = "test";
             this.DataContext = (object)Cache.Instance;
         }
        
@@ -49,29 +49,64 @@ namespace SEMS.Adapter.UI
 
         private void employeeList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Employee test = (Employee)employeeList.SelectedItem;
-            boxName.Text = test.Name;
-            //boxStateProvince.Text = test.Address.StateProvince;
-            boxZipcode.Text = test.Address.Zipcode;
-            boxCity.Text = test.Address.City;
-            boxStreet.Text = test.Address.Street;
-            boxSurname.Text = test.Surname;
-            boxStreetNumber.Text = test.Address.Number;
-            boxRole.Text = test.Role.Name;
-            boxDepartment.Text = test.Department.Name;
-            boxSalBonus.Text = "0";
-            boxCurrency.Text = test.Salary.currency;
+            Employee selectedEmp = (Employee)employeeList.SelectedItem;
+            editWindow.DataContext = selectedEmp;
+
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
+            
             Employee selectedEmployee = (Employee)employeeList.SelectedItem;
-            //selectedEmployee.Address.StateProvince = boxStateProvince.Text;
-            selectedEmployee.Address.City = boxCity.Text;
-            selectedEmployee.Address.Street = boxStreet.Text;
-            selectedEmployee.Address.Zipcode = boxZipcode.Text;
-            selectedEmployee.Address.Number = boxStreetNumber.Text;
-            // TODO Updateing view
+            
+            if (selectedEmployee!=null)
+            {
+                var test = dataHandler.getSitesByName(cmbSite.Text).ElementAt(0);
+                dataHandler.addEmployee(new Employee(
+                    boxName.Text,
+                    boxSurname.Text,
+                    boxTitle.Text,
+                    dataHandler.getPrivilegeByName(boxPrivilege.Text),
+                    boxCountry.Text,
+                    boxStateProvince.Text,
+                    boxZipcode.Text,
+                    boxCity.Text, boxStreet.Text, boxStreetNumber.Text,
+                    dataHandler.getSitesByName(cmbSite.Text).ElementAt(0),
+                    dataHandler.getDepartmentsByName(cmbDepartment.Text).ElementAt(0) ,
+                    dataHandler.getRolesByName(cmbRole.Text).ElementAt(0),
+                    new Salary(decimal.Parse(boxSalary.Text),0,0,boxCurrency.Text)
+                    ));
+            }
+            Cache cache = Cache.Instance;
+            cache.update();
+            cache.NotifyPropertyChanged("EmployeeCache");
+        }
+        
+        private void cmbSite_TextChanged(object sender, EventArgs e)
+        {
+            cmbSite.ItemsSource = dataHandler.getSitesByName("");
+            
+        }
+        private void cmbDept_TextChanged(object sender, EventArgs e)
+        {
+            cmbDepartment.ItemsSource = dataHandler.getDepartmentsByName("");
+
+        }
+
+        private void cmbRole_TextChanged(object sender, EventArgs e)
+        {
+            cmbRole.ItemsSource = dataHandler.getRolesByName("");
+        }
+
+        private void newEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            employeeList.SelectedItem = null;
+            Save_Click(sender, e);
+        }
+
+        private void deleteEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

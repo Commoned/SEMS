@@ -7,6 +7,11 @@
             Name = name;
             Address = new Address(country, state, zipcode, city, street, streetnumber);
         }
+        override
+        public string ToString()
+        {
+            return Name;
+        }
 
         public string Name { get; set; }
         public Address Address { get; set; }
