@@ -46,9 +46,10 @@ namespace SEMS.Adapter.UI
         
         private void employeeList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            
             Employee selectedEmp = (Employee)employeeList.SelectedItem;
             editWindow.DataContext = selectedEmp;
-            cmbSite.Text = selectedEmp.Site.Name;
+            
 
         }
 
