@@ -36,27 +36,39 @@ namespace SEMS.Adapter.UI
         }
         private void siteList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Site test = (Site)siteList.SelectedItem;
-            boxName.Text = test.Name;
-            //boxStateProvince.Text = test.Address.StateProvince;
-            boxZipcode.Text = test.Address.Zipcode;
-            boxCity.Text = test.Address.City;
-            boxStreet.Text = test.Address.Street;
-            boxStreetNumber.Text = test.Address.Number;
-
+            Site selectedSite = (Site)siteList.SelectedItem;
+            editWindow.DataContext = selectedSite;
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            
+            Site selectedSite = (Site)siteList.SelectedItem;
+            selectedSite.Name = boxName.Text;
+            selectedSite.Address.Country = boxCountry.Text;
+            selectedSite.Address.State = boxStateProvince.Text;
+            selectedSite.Address.City = boxCity.Text;
+            selectedSite.Address.Zipcode = boxZipcode.Text;
+            selectedSite.Address.Street = boxStreet.Text;
+            selectedSite.Address.Number = boxStreetNumber.Text;
+            SiteManagement.updateSite(selectedSite);
+            Cache cache = Cache.Instance;
+            cache.update();
+            cache.NotifyPropertyChanged("SiteCache");
         }
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            
+            Site selectedSite = (Site)siteList.SelectedItem;
+            SiteManagement.deleteSite(selectedSite);
+            Cache cache = Cache.Instance;
+            cache.update();
+            cache.NotifyPropertyChanged("SiteCache");
         }
         private void New_Click(object sender, RoutedEventArgs e)
         {
-            
+            SiteManagement.newSite(boxName.Text,boxCountry.Text,boxStateProvince.Text,boxZipcode.Text,boxCity.Text,boxStreet.Text,boxStreetNumber.Text) ;
+            Cache cache = Cache.Instance;
+            cache.update();
+            cache.NotifyPropertyChanged("SiteCache");
         }
     }
 }

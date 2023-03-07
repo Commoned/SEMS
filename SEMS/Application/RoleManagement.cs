@@ -6,28 +6,31 @@ using System.Text;
 using System.Threading.Tasks;
 using SEMS.Domain;
 using SEMS.Adapter;
+using System.Diagnostics;
+using System.Security.Cryptography;
 
 namespace SEMS.Application
 {
-    internal class RoleManagement
+    internal static class RoleManagement
     {
-        DataHandler dataHandler;
-        public RoleManagement(DataHandler dataHandler)
+        static DataHandler dataHandler = new Database();
+       
+
+        public static bool newRole(string name, string descr)
         {
-            this.dataHandler = dataHandler;
+            Debug.Write("Creating Dept");
+            Role newRole = new Role(name, descr);
+            return dataHandler.addRole(newRole);
         }
 
-        public Role newRole()
+        public static bool updateRole(Role updateRole)
         {
-            UserEntry userEntry = new ConsoleEntry();
-            IdentificationProvider identificationProvider = new Identification();
-            Console.WriteLine("Name:");
-            var name = userEntry.acceptEntry();
-            Console.WriteLine("Description:");
-            var description = userEntry.acceptEntry();
-            var id = identificationProvider.provideId();
+            return dataHandler.updateRole(updateRole);
+        }
 
-            return new Role(name, description, id);
+        public static bool deleteRole(Role updateRole)
+        {
+            return true;
         }
     }
 }

@@ -1,44 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using SEMS.Adapter;
 using SEMS.Domain;
+using SQLitePCL;
 
 namespace SEMS.Application
 {
-    internal class SiteManagement
+    internal static class SiteManagement
     {
-        DataHandler dataHandler;
+        static DataHandler dataHandler = new Database();
 
-        public SiteManagement(DataHandler dataHandler)
+
+        public static bool newSite(string name, string country, string state,string zipcode,string city, string street, string streetnumber)
         {
-            this.dataHandler = dataHandler;
+            return dataHandler.addSite(new Site(name, country, state, zipcode, city, street, streetnumber));
         }
 
-        public Domain.Site newSite()
+        public static bool updateSite(Site updateSite)
         {
-            UserEntry userEntry = new ConsoleEntry();
-            Console.WriteLine("Name:");
-            string name = userEntry.acceptEntry();
-            Console.WriteLine("Country:");
+            return dataHandler.updateSite(updateSite);
+        }
 
-            Console.WriteLine("country:");
-            string country = userEntry.acceptEntry();
-            Console.WriteLine("state:");
-            string state = userEntry.acceptEntry();
-            Console.WriteLine("zipcode:");
-            string zipcode = userEntry.acceptEntry();
-            Console.WriteLine("City:");
-            string city = userEntry.acceptEntry();
-            Console.WriteLine("Street:");
-            string street = userEntry.acceptEntry();
-            Console.WriteLine("Streetnumber:");
-            string streetnumber = userEntry.acceptEntry();
-
-            return new Domain.Site(name, country, state, zipcode, city, street, streetnumber);
+        public static bool deleteSite(Site updateSite)
+        {
+            return true;
         }
     }
 }
