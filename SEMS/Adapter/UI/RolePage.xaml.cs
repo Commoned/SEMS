@@ -36,25 +36,33 @@ namespace SEMS.Adapter.UI
         }
         private void role_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-
-
+            Role selectedRole = (Role)roleList.SelectedItem;
+            editWindow.DataContext = selectedRole;
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            Site selectedEmployee = (Site)roleList.SelectedItem;
-            // TODO Updateing view
+            Role selectedRole = (Role)roleList.SelectedItem;
+            selectedRole.Name = boxName.Text;
+            selectedRole.Description = boxDescription.Text;
+            RoleManagement.updateRole(selectedRole);
+            Cache cache = Cache.Instance;
+            cache.update();
+            cache.NotifyPropertyChanged("RoleCache");
         }
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            Site selectedEmployee = (Site)roleList.SelectedItem;
-            // TODO Updateing view
+            RoleManagement.deleteRole((Role)roleList.SelectedItem);
+            Cache cache = Cache.Instance;
+            cache.update();
+            cache.NotifyPropertyChanged("RoleCache");
         }
         private void New_Click(object sender, RoutedEventArgs e)
         {
-            Site selectedEmployee = (Site)roleList.SelectedItem;
-            // TODO Updateing view
+            RoleManagement.newRole(boxName.Text, boxDescription.Text);
+            Cache cache = Cache.Instance;
+            cache.update();
+            cache.NotifyPropertyChanged("RoleCache");
         }
     }
 }

@@ -26,15 +26,24 @@ namespace SEMS.Application
         private Cache()
         {
             EmployeeCache = database.getEmployeesByName("");
-            
+            DeptCache = database.getDepartmentsByName("");
+            RoleCache = database.getRolesByName("");
+            SiteCache = database.getSitesByName("");
         }
 
         public ObservableCollection<Employee> EmployeeCache { get; private set; }
+        public ObservableCollection<Department> DeptCache { get; private set; }
+        public ObservableCollection<Site> SiteCache { get; private set; }
+        public ObservableCollection<Role> RoleCache { get; private set; }
+
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
         public void update()
         {
             EmployeeCache = database.getEmployeesByName("");
+            DeptCache = database.getDepartmentsByName("");
+            RoleCache = database.getRolesByName("");
+            SiteCache = database.getSitesByName("");
         }
         public void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {

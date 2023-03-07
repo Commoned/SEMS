@@ -67,11 +67,6 @@ namespace SEMS.Application
     {
         static DataHandler dataHandler = new Database();
 
-        /*public EmployeeManagement(DataHandler dataHandler)
-        {
-            this.dataHandler = dataHandler;
-        }
-        */
         public static bool newEmployee(string name, string surname, string title, Privilege privilege, string country, string state, string zipcode, string city, string street, string streetnumber, Domain.Site site, Department department, Role role, Salary salary)
         {
 

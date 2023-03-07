@@ -34,28 +34,40 @@ namespace SEMS.Adapter.UI
             Cache cache = Cache.Instance;
             Debug.WriteLine(cache.EmployeeCache);
         }
-        private void employeeList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void deptList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            Department selectedDept = (Department)deptList.SelectedItem;
+            editWindow.DataContext = selectedDept;
             
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            Site selectedEmployee = (Site)employeeList.SelectedItem;
-            // TODO Updateing view
+            Department selectedDept = (Department)deptList.SelectedItem;
+            selectedDept.Name = boxName.Text;
+            selectedDept.Description = boxDescription.Text;
+            selectedDept.AccountingUnit = boxAccountingUnit.Text;
+            DepartmentManagement.updateDepartment(selectedDept);
+            Cache cache = Cache.Instance;
+            cache.update();
+            cache.NotifyPropertyChanged("DeptCache");
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            Site selectedEmployee = (Site)employeeList.SelectedItem;
-            // TODO Updateing view
+            Department selectedDept = (Department)deptList.SelectedItem;
+            DepartmentManagement.deleteDepartment(selectedDept);
+            Cache cache = Cache.Instance;
+            cache.update();
+            cache.NotifyPropertyChanged("DeptCache");
         }
 
         private void New_Click(object sender, RoutedEventArgs e)
         {
-            Site selectedEmployee = (Site)employeeList.SelectedItem;
-            // TODO Updateing view
+            DepartmentManagement.newDepartment(boxName.Text,boxDescription.Text,boxAccountingUnit.Text);
+            Cache cache = Cache.Instance;
+            cache.update();
+            cache.NotifyPropertyChanged("DeptCache");
         }
     }
 }

@@ -5,29 +5,35 @@ using System.Text;
 using System.Threading.Tasks;
 using SEMS.Domain;
 using SEMS.Adapter;
+using System.Data;
+using System.Diagnostics;
+using System.IO;
+using System.Reflection.Emit;
+using System.Security.Policy;
 
 namespace SEMS.Application
 {
-    internal class DepartmentManagement
+    internal static class DepartmentManagement
     {
-        DataHandler dataHandler;
-
-        public DepartmentManagement(DataHandler dataHandler)
+        static DataHandler dataHandler = new Database();
+        public static bool newDepartment(string name, string descr, string accountingUnit)
         {
-            this.dataHandler = dataHandler;
+            Debug.Write("Creating Dept");
+            Department newDept = new Department(name,descr,accountingUnit);
+            dataHandler.addDepartment(newDept);
+            return true;
         }
-
-        public Department newDepartment()
+        public static bool updateDepartment(Department updateDept)
         {
-            UserEntry userEntry = new ConsoleEntry();
-            Console.WriteLine("Name:");
-            var name = userEntry.acceptEntry();
-            Console.WriteLine("Description:");
-            var description = userEntry.acceptEntry();
-            Console.WriteLine("Accounting Unit:");
-            var accountingUnit = userEntry.acceptEntry();
+            dataHandler.updateDepartment(updateDept);
 
-            return new Department(name, description, accountingUnit);
+            return true;
+        }
+        public static bool deleteDepartment(Department deleeteDept)
+        {
+            
+
+            return true;
         }
     }
 }
