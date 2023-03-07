@@ -60,6 +60,7 @@
             <StackPanel.Background>
                 <SolidColorBrush Color="{StaticResource SEMSpurple}"/>
             </StackPanel.Background>
+            
             <TextBlock Foreground="White">Search:</TextBlock>
             <TextBox x:Name="searchBox" Margin="10,3"></TextBox>
             <Button Content="Search"  x:Name="searchButton" Click="searchData" Margin="10,10"></Button>
@@ -96,9 +97,11 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Id" Width="50" DisplayMemberBinding="{Binding Path=Id}" />
+                        <GridViewColumn Header="Title" Width="50" DisplayMemberBinding="{Binding Path=Title}" />
                         <GridViewColumn Header="Name" Width="50" DisplayMemberBinding="{Binding Path=Name}" />
                         <GridViewColumn Header="Surname" Width="50" DisplayMemberBinding="{Binding Path=Surname}" />
-                        <GridViewColumn Header="State" Width="50" DisplayMemberBinding="{Binding Path=Address.StateProvince}" />
+                        <GridViewColumn Header="Surname" Width="50" DisplayMemberBinding="{Binding Path=Address.Country}" />
+                        <GridViewColumn Header="State" Width="50" DisplayMemberBinding="{Binding Path=Address.State}" />
                         <GridViewColumn Header="Zipcode" Width="50" DisplayMemberBinding="{Binding Path=Address.Zipcode}" />
                         <GridViewColumn Header="City" Width="50" DisplayMemberBinding="{Binding Path=Address.City}" />
                         <GridViewColumn Header="Title" Width="50" DisplayMemberBinding="{Binding Path=Address.Street}" />
@@ -111,56 +114,94 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <ItemsControl Grid.Column="1">
+            <ItemsControl Grid.Column="1" x:Name="editWindow">
+                <UniformGrid VerticalAlignment="Top"  Columns="2">
+                    <TextBlock Text="Title:"></TextBlock>
+                    <TextBox x:Name="boxTitle" Text="{Binding Path=Title}"></TextBox>
+                </UniformGrid>
                 <UniformGrid VerticalAlignment="Top"  Columns="2">
                     <TextBlock Text="Name:"></TextBlock>
-                    <TextBox x:Name="boxName"></TextBox>
+                    <TextBox x:Name="boxName" Text="{Binding Path=Name}"></TextBox>
                 </UniformGrid>
                 <UniformGrid VerticalAlignment="Top"  Columns="2">
                     <TextBlock Text="Surname:"></TextBlock>
-                    <TextBox x:Name="boxSurname"></TextBox>
+                    <TextBox x:Name="boxSurname" Text="{Binding Path=Surname}"></TextBox>
+                </UniformGrid>
+                <UniformGrid VerticalAlignment="Top"  Columns="2">
+                    <TextBlock Text="Country:"></TextBlock>
+                    <TextBox x:Name="boxCountry" Text="{Binding Path=Address.Country}"></TextBox>
                 </UniformGrid>
                 <UniformGrid VerticalAlignment="Top"  Columns="2">
                     <TextBlock Text="State:"></TextBlock>
-                    <TextBox x:Name="boxStateProvince"></TextBox>
+                    <TextBox x:Name="boxStateProvince" Text="{Binding Path=Address.State}"></TextBox>
                 </UniformGrid>
                 <UniformGrid VerticalAlignment="Top" Columns="2">
                     <TextBlock Text="Zipcode:"></TextBlock>
-                    <TextBox x:Name="boxZipcode"></TextBox>
+                    <TextBox x:Name="boxZipcode" Text="{Binding Path=Address.Zipcode}"></TextBox>
                 </UniformGrid>
                 <UniformGrid VerticalAlignment="Top" Columns="2">
                     <TextBlock Text="City:"></TextBlock>
-                    <TextBox   x:Name="boxCity"></TextBox>
+                    <TextBox   x:Name="boxCity" Text="{Binding Path=Address.City}"></TextBox>
                 </UniformGrid>
                 <UniformGrid VerticalAlignment="Top" Columns="2">
                     <TextBlock Text="Street:"></TextBlock>
-                    <TextBox   x:Name="boxStreet"></TextBox>
+                    <TextBox   x:Name="boxStreet" Text="{Binding Path=Address.Street}"></TextBox>
                 </UniformGrid>
                 <UniformGrid VerticalAlignment="Top" Columns="2">
                     <TextBlock Text="StreetNumber:"></TextBlock>
-                    <TextBox   x:Name="boxStreetNumber"></TextBox>
+                    <TextBox   x:Name="boxStreetNumber" Text="{Binding Path=Address.Number}"></TextBox>
                 </UniformGrid>
                 <UniformGrid VerticalAlignment="Top" Columns="2">
                     <TextBlock Text="Site:"></TextBlock>
-                    <TextBox   x:Name="boxSite"></TextBox>
+                    <ComboBox Name="cmbSite" DropDownOpened="cmbSite_TextChanged" IsEditable="False" Text="{Binding Path=Site.Name}" IsTextSearchEnabled="True" IsTextSearchCaseSensitive="False" StaysOpenOnEdit="True" TextSearch.TextPath="Name" >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                 </UniformGrid>
                 <UniformGrid VerticalAlignment="Top" Columns="2">
                     <TextBlock Text="Department:"></TextBlock>
-                    <TextBox   x:Name="boxDepartment"></TextBox>
+                    <ComboBox Name="cmbDepartment" DropDownOpened="cmbDept_TextChanged"  IsEditable="False" Text="{Binding Path=Department.Name}" IsTextSearchEnabled="True" IsTextSearchCaseSensitive="False" StaysOpenOnEdit="True" TextSearch.TextPath="Name" >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </UniformGrid>
+                <UniformGrid VerticalAlignment="Top" Columns="2">
+                    <TextBlock Text="Privilege:"></TextBlock>
+                    <TextBox   x:Name="boxPrivilege" Text="{Binding Path=Privilege.Name}"></TextBox>
                 </UniformGrid>
                 <UniformGrid VerticalAlignment="Top" Columns="2">
                     <TextBlock Text="Role:"></TextBlock>
-                    <TextBox   x:Name="boxRole"></TextBox>
+                    <ComboBox Name="cmbRole"  IsEditable="False" DropDownOpened="cmbRole_TextChanged" Text="{Binding Path=Role.Name}" IsTextSearchEnabled="True" IsTextSearchCaseSensitive="False" StaysOpenOnEdit="True" TextSearch.TextPath="Name">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                 </UniformGrid>
                 <UniformGrid VerticalAlignment="Top" Columns="2">
-                    <TextBlock Text="Salary Bonus:"></TextBlock>
-                    <TextBox   x:Name="boxSalBonus"></TextBox>
+                    <TextBlock Text="baseSalary:"></TextBlock>
+                    <TextBox   x:Name="boxSalary"  Text="{Binding Path=Salary.baseSalary}"></TextBox>
                 </UniformGrid>
                 <UniformGrid VerticalAlignment="Top" Columns="2">
                     <TextBlock Text="Salary Currency:"></TextBlock>
-                    <TextBox   x:Name="boxCurrency"></TextBox>
+                    <TextBox   x:Name="boxCurrency" Text="{Binding Path=Salary.currency}"></TextBox>
                 </UniformGrid>
-                <Button Content="Save" Click="Save_Click"></Button>
+                <Button Content="Update Employee" Click="Save_Click" Margin="10,10"></Button>
+                <Button Content="Delete Employee"  x:Name="delEmp" Click="deleteEmployee_Click" Margin="10,10"></Button>
+                <Button Content="New Employee"  x:Name="newEmp" Click="newEmployee_Click" Margin="10,10"></Button>
             </ItemsControl>
         </Grid>
     </Grid>
