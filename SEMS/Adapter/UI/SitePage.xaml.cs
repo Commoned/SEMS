@@ -34,9 +34,9 @@ namespace SEMS.Adapter.UI
             Cache cache = Cache.Instance;
             Debug.WriteLine(cache.EmployeeCache);
         }
-        private void employeeList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void siteList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Site test = (Site)employeeList.SelectedItem;
+            Site test = (Site)siteList.SelectedItem;
             boxName.Text = test.Name;
             //boxStateProvince.Text = test.Address.StateProvince;
             boxZipcode.Text = test.Address.Zipcode;
@@ -48,13 +48,15 @@ namespace SEMS.Adapter.UI
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            Site selectedEmployee = (Site)employeeList.SelectedItem;
-            //selectedEmployee.Address.StateProvince = boxStateProvince.Text;
-            selectedEmployee.Address.City = boxCity.Text;
-            selectedEmployee.Address.Street = boxStreet.Text;
-            selectedEmployee.Address.Zipcode = boxZipcode.Text;
-            selectedEmployee.Address.Number = boxStreetNumber.Text;
-            // TODO Updateing view
+            
+        }
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+        private void New_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

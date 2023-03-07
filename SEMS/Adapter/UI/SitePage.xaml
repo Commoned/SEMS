@@ -76,7 +76,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="0.5*"/>
             </Grid.ColumnDefinitions>
-            <ListView Grid.RowSpan="10" Name="employeeList" ItemsSource="{Binding EmployeeCache, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="employeeList_SelectionChanged" SelectionMode="Single">
+            <ListView Grid.RowSpan="10" Name="siteList" ItemsSource="{Binding EmployeeCache, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="siteList_SelectionChanged" SelectionMode="Single">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="Background" Value="White"/>
@@ -130,7 +130,10 @@
                     <TextBlock Text="StreetNumber:"></TextBlock>
                     <TextBox   x:Name="boxStreetNumber"></TextBox>
                 </UniformGrid>
-                <Button Content="Save" Click="Save_Click"></Button>
+                <Button Content="Update Site" Click="Save_Click" Margin="10,10"></Button>
+                <Button Content="Delete Site" Click="Delete_Click" Margin="10,10"></Button>
+                <Button Content="New Site" Click="New_Click" Margin="10,10"></Button>
+                
             </ItemsControl>
 
         </Grid>

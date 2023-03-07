@@ -271,7 +271,7 @@ namespace SEMS.Adapter
                 var command = connection.CreateCommand();
                 command.CommandText =
                 @"
-                SELECT name, description, accountingunit
+                SELECT name, description, accountingunit, department_id
                 FROM departments
                 WHERE department_id = $myid
                 ";
@@ -282,7 +282,7 @@ namespace SEMS.Adapter
                 {
                     while (reader.Read())
                     {
-                        Department department = new Department(name: reader.GetString(0), description: reader.GetString(1), accountingUnit: reader.GetString(2));
+                        Department department = new Department(name: reader.GetString(0), description: reader.GetString(1), accountingUnit: reader.GetString(2), id: reader.GetInt32(3));
                         return department;
                     }
                 }
@@ -359,7 +359,7 @@ namespace SEMS.Adapter
                 var command = connection.CreateCommand();
                 command.CommandText =
                 @"
-                SELECT name, country, state, zipcode, city, street, streetnumber
+                SELECT name, country, state, zipcode, city, street, streetnumber, site_id
                 FROM sites
                 WHERE site_id = $myid
                 ";
@@ -370,7 +370,7 @@ namespace SEMS.Adapter
                 {
                     while (reader.Read())
                     {
-                        Site site = new Site(name: reader.GetString(0), country: reader.GetString(1), state: reader.GetString(2), zipcode: reader.GetString(3), city: reader.GetString(4), street: reader.GetString(5), streetnumber: reader.GetString(6));
+                        Site site = new Site(name: reader.GetString(0), country: reader.GetString(1), state: reader.GetString(2), zipcode: reader.GetString(3), city: reader.GetString(4), street: reader.GetString(5), streetnumber: reader.GetString(6), id: reader.GetInt32(7));
                         return site;
                     }
                 }
@@ -567,14 +567,14 @@ namespace SEMS.Adapter
                 var command = connection.CreateCommand();
                 command.CommandText =
                 @"
-                INSERT INTO sites (name, surname, title, privilege, country, state, zipcode, city, street, streetnumber, site_id, department_id, role_id, basesalary, bonus, deduction, currency)
+                INSERT INTO employees (name, surname, title, privilege, country, state, zipcode, city, street, streetnumber, site_id, department_id, role_id, basesalary, bonus, deduction, currency)
                 VALUES ($myname, $mysurname, $mytitle, $myprivilege, $mycountry, $mystate, $myzipcode, $mycity, $mystreet, $mystreetnumber, $mysite_id, $mydepartment_id, $myrole_id, $mybasesalary, $mybonus, $mydeduction, $mycurrency)
                 ";
 
                 command.Parameters.AddWithValue("$myname", employee.Name);
                 command.Parameters.AddWithValue("$mysurname", employee.Surname);
                 command.Parameters.AddWithValue("$mytitle", employee.Title);
-                command.Parameters.AddWithValue("$myprivilege", employee.Privilege);
+                command.Parameters.AddWithValue("$myprivilege", employee.Privilege.Name);
                 command.Parameters.AddWithValue("$mycountry", employee.Address.Country);
                 command.Parameters.AddWithValue("$mystate", employee.Address.State);
                 command.Parameters.AddWithValue("$myzipcode", employee.Address.Zipcode);
@@ -696,5 +696,177 @@ namespace SEMS.Adapter
             }
         }
 
+
+
+        public bool updateEmployee(Employee employee)
+        {
+            using (var connection = new SqliteConnection(dblocation))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText =
+                @"
+                UPDATE employees
+                SET name = $myname,
+                surname = $mysurname,
+                title = $mytitle,
+                privilege = $myprivilege,
+                country = $mycountry,
+                state = $mystate,
+                zipcode = $myzipcode,
+                city = $mycity,
+                street = $mystreet,
+                streetnumber = $mystreetnumber,
+                site_id = $mysite_id,
+                department_id = $mydepartment_id,
+                role_id = $myrole_id,
+                basesalary = $mybasesalary,
+                bonus = $mybonus,
+                deduction = $mydeduction,
+                currency = $mycurrency
+                WHERE employee_id = $myemployee_id
+                ";
+
+                command.Parameters.AddWithValue("$myname", employee.Name);
+                command.Parameters.AddWithValue("$mysurname", employee.Surname);
+                command.Parameters.AddWithValue("$mytitle", employee.Title);
+                command.Parameters.AddWithValue("$myprivilege", employee.Privilege.Name);
+                command.Parameters.AddWithValue("$mycountry", employee.Address.Country);
+                command.Parameters.AddWithValue("$mystate", employee.Address.State);
+                command.Parameters.AddWithValue("$myzipcode", employee.Address.Zipcode);
+                command.Parameters.AddWithValue("$mycity", employee.Address.City);
+                command.Parameters.AddWithValue("$mystreet", employee.Address.Street);
+                command.Parameters.AddWithValue("$mystreetnumber", employee.Address.Number);
+                command.Parameters.AddWithValue("$mysite_id", employee.Site.Id);
+                command.Parameters.AddWithValue("$mydepartment_id", employee.Department.Id);
+                command.Parameters.AddWithValue("$myrole_id", employee.Role.Id);
+                command.Parameters.AddWithValue("$mybasesalary", employee.Salary.baseSalary);
+                command.Parameters.AddWithValue("$mybonus", employee.Salary.bonuses);
+                command.Parameters.AddWithValue("$mydeduction", employee.Salary.deductions);
+                command.Parameters.AddWithValue("$mycurrency", employee.Salary.currency);
+                command.Parameters.AddWithValue("$myemployee_id", employee.Id);
+
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        public bool updateUser(User user) 
+        { 
+            return false; 
+        }
+
+        public bool updateDepartment(Department department)
+        {
+            using (var connection = new SqliteConnection(dblocation))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText =
+                @"
+                UPDATE departments
+                SET name = $myname,
+                description = $mydescription,
+                accountingunit = $myaccountingunit
+                WHERE department_id = $mydepartment_id
+                ";
+
+                command.Parameters.AddWithValue("$myname", department.Name);
+                command.Parameters.AddWithValue("$mydescription", department.Description);
+                command.Parameters.AddWithValue("$myaccountingunit", department.AccountingUnit);
+                command.Parameters.AddWithValue("$mydepartment_id", department.Id);
+
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        public bool updateSite(Site site)
+        {
+            using (var connection = new SqliteConnection(dblocation))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText =
+                @"
+                UPDATE sites
+                SET name = $myname,
+                country = $mycountry,
+                state  = $mystate,
+                zipcode = $myzipcode,
+                city = $mycity,
+                street = $mystreet,
+                streetnumber = $mystreetnumber
+                WHERE site_id = $mysite_id
+                ";
+
+                command.Parameters.AddWithValue("$myname", site.Name);
+                command.Parameters.AddWithValue("$mycountry", site.Address.Country);
+                command.Parameters.AddWithValue("$mystate", site.Address.State);
+                command.Parameters.AddWithValue("$myzipcode", site.Address.Zipcode);
+                command.Parameters.AddWithValue("$mycity", site.Address.City);
+                command.Parameters.AddWithValue("$mystreet", site.Address.Street);
+                command.Parameters.AddWithValue("$mystreetnumber", site.Address.Number);
+                command.Parameters.AddWithValue("$mysite_id", site.Id);
+
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        public bool updateRole(Role role)
+        {
+            using (var connection = new SqliteConnection(dblocation))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText =
+                @"
+                UPDATE roles
+                SET name = $myname,
+                description = $mydescription
+                WHERE role_id = $myrole_id
+                ";
+
+                command.Parameters.AddWithValue("$myname", role.Name);
+                command.Parameters.AddWithValue("$mydescription", role.Description);
+                command.Parameters.AddWithValue("$myrole_id", role.Id);
+
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
     }
 }
