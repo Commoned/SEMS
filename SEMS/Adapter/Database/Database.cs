@@ -301,7 +301,7 @@ namespace SEMS.Adapter
                 var command = connection.CreateCommand();
                 command.CommandText =
                 @"
-                SELECT name, description, accountingunit
+                SELECT name, description, accountingunit, department_id
                 FROM departments
                 WHERE name LIKE $myname
                 ";
@@ -312,7 +312,7 @@ namespace SEMS.Adapter
                 {
                     while (reader.Read())
                     {
-                        Department department = new Department(name: reader.GetString(0), description: reader.GetString(1), accountingUnit: reader.GetString(2));
+                        Department department = new Department(name: reader.GetString(0), description: reader.GetString(1), accountingUnit: reader.GetString(2), id: reader.GetInt32(3));
                         departments.Add(department);
                     }
                 }
@@ -331,7 +331,7 @@ namespace SEMS.Adapter
                 var command = connection.CreateCommand();
                 command.CommandText =
                 @"
-                SELECT name, description, accountingunit
+                SELECT name, description, accountingunit, department_id
                 FROM departments
                 WHERE accountingunit LIKE $myaccountingunit
                 ";
@@ -342,7 +342,7 @@ namespace SEMS.Adapter
                 {
                     while (reader.Read())
                     {
-                        Department department = new Department(name: reader.GetString(0), description: reader.GetString(1), accountingUnit: reader.GetString(2));
+                        Department department = new Department(name: reader.GetString(0), description: reader.GetString(1), accountingUnit: reader.GetString(2), id: reader.GetInt32(3));
                         departments.Add(department);
                     }
                 }
@@ -389,7 +389,7 @@ namespace SEMS.Adapter
                 var command = connection.CreateCommand();
                 command.CommandText =
                 @"
-                SELECT name, country, state, zipcode, city, street, streetnumber
+                SELECT name, country, state, zipcode, city, street, streetnumber, site_id
                 FROM sites
                 WHERE name LIKE $myname
                 ";
@@ -400,7 +400,7 @@ namespace SEMS.Adapter
                 {
                     while (reader.Read())
                     {
-                        Site site = new Site(name: reader.GetString(0), country: reader.GetString(1), state: reader.GetString(2), zipcode: reader.GetString(3), city: reader.GetString(4), street: reader.GetString(5), streetnumber: reader.GetString(6));
+                        Site site = new Site(name: reader.GetString(0), country: reader.GetString(1), state: reader.GetString(2), zipcode: reader.GetString(3), city: reader.GetString(4), street: reader.GetString(5), streetnumber: reader.GetString(6), id: reader.GetInt32(7));
                         sites.Add(site);
                     }
                 }
@@ -419,7 +419,7 @@ namespace SEMS.Adapter
                 var command = connection.CreateCommand();
                 command.CommandText =
                 @"
-                SELECT name, country, state, zipcode, city, street, streetnumber
+                SELECT name, country, state, zipcode, city, street, streetnumber, site_id
                 FROM sites
                 WHERE country LIKE $mycountry
                 ";
@@ -430,7 +430,7 @@ namespace SEMS.Adapter
                 {
                     while (reader.Read())
                     {
-                        Site site = new Site(name: reader.GetString(0), country: reader.GetString(1), state: reader.GetString(2), zipcode: reader.GetString(3), city: reader.GetString(4), street: reader.GetString(5), streetnumber: reader.GetString(6));
+                        Site site = new Site(name: reader.GetString(0), country: reader.GetString(1), state: reader.GetString(2), zipcode: reader.GetString(3), city: reader.GetString(4), street: reader.GetString(5), streetnumber: reader.GetString(6), id: reader.GetInt32(7));
                         sites.Add(site);
                     }
                 }
@@ -449,7 +449,7 @@ namespace SEMS.Adapter
                 var command = connection.CreateCommand();
                 command.CommandText =
                 @"
-                SELECT name, country, state, zipcode, city, street, streetnumber
+                SELECT name, country, state, zipcode, city, street, streetnumber, site_id
                 FROM sites
                 WHERE state LIKE $mystate
                 ";
@@ -460,7 +460,7 @@ namespace SEMS.Adapter
                 {
                     while (reader.Read())
                     {
-                        Site site = new Site(name: reader.GetString(0), country: reader.GetString(1), state: reader.GetString(2), zipcode: reader.GetString(3), city: reader.GetString(4), street: reader.GetString(5), streetnumber: reader.GetString(6));
+                        Site site = new Site(name: reader.GetString(0), country: reader.GetString(1), state: reader.GetString(2), zipcode: reader.GetString(3), city: reader.GetString(4), street: reader.GetString(5), streetnumber: reader.GetString(6), id: reader.GetInt32(7));
                         sites.Add(site);
                     }
                 }
@@ -479,7 +479,7 @@ namespace SEMS.Adapter
                 var command = connection.CreateCommand();
                 command.CommandText =
                 @"
-                SELECT name, country, state, zipcode, city, street, streetnumber
+                SELECT name, country, state, zipcode, city, street, streetnumber, site_id
                 FROM sites
                 WHERE zipcode LIKE $myzipcode
                 ";
@@ -490,7 +490,7 @@ namespace SEMS.Adapter
                 {
                     while (reader.Read())
                     {
-                        Site site = new Site(name: reader.GetString(0), country: reader.GetString(1), state: reader.GetString(2), zipcode: reader.GetString(3), city: reader.GetString(4), street: reader.GetString(5), streetnumber: reader.GetString(6));
+                        Site site = new Site(name: reader.GetString(0), country: reader.GetString(1), state: reader.GetString(2), zipcode: reader.GetString(3), city: reader.GetString(4), street: reader.GetString(5), streetnumber: reader.GetString(6), id: reader.GetInt32(7));
                         sites.Add(site);
                     }
                 }
