@@ -44,6 +44,11 @@ namespace SEMS.Application
             DeptCache = database.getDepartmentsByName("");
             RoleCache = database.getRolesByName("");
             SiteCache = database.getSitesByName("");
+
+            NotifyPropertyChanged("EmployeeCache");
+            NotifyPropertyChanged("DeptCache");
+            NotifyPropertyChanged("RoleCache");
+            NotifyPropertyChanged("SiteCache");
         }
         public void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {

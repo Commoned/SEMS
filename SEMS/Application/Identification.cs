@@ -8,6 +8,11 @@ namespace SEMS.Application
 {
     internal class Identification : IdentificationProvider
     {
+
+        public Identification() 
+        { 
+
+        }
         public int provideId()
         {
             return 0;
@@ -17,6 +22,11 @@ namespace SEMS.Application
         {
             // To Be Continued
             return "Test";
+        }
+
+        public bool Validate(string username, string password)
+        {
+            return true;
         }
 
     }

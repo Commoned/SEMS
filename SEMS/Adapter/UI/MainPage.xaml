@@ -162,7 +162,9 @@
                     <DropShadowBitmapEffect Color="Black" Direction="320" Softness="1" ShadowDepth="-10" Opacity="0.5" />
                 </Button.BitmapEffect>
             </Button>
-        </Grid>
 
+            
+        </Grid>
+        
     </Grid>
     </UserControl>

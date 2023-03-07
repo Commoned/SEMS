@@ -52,8 +52,16 @@ namespace SEMS.Adapter.UI
         }
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
+
+            try { 
             RoleManagement.deleteRole((Role)roleList.SelectedItem);
-            Cache cache = Cache.Instance;
+            }
+            catch (Exception except){
+                MessageBox.Show(except.Message);
+                
+            }
+
+    Cache cache = Cache.Instance;
             cache.update();
             cache.NotifyPropertyChanged("RoleCache");
         }

@@ -28,9 +28,14 @@ namespace SEMS.Application
             return dataHandler.updateRole(updateRole);
         }
 
-        public static bool deleteRole(Role updateRole)
+        public static bool deleteRole(Role deleteRole)
         {
-            return true;
+
+            if (dataHandler.getEmployeesByRoleId(deleteRole.Id).Count != 0)
+            {
+                throw new Exception("There are Employees tied to this Role");
+            }
+            return dataHandler.deleteRole(deleteRole);
         }
     }
 }

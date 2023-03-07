@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SEMS.Application;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SEMS.Application;
 
 namespace SEMS.Adapter.UI
 {
@@ -20,9 +22,20 @@ namespace SEMS.Adapter.UI
     /// </summary>
     public partial class PrivilegePage : UserControl
     {
+        IdentificationProvider identification = new Identification();
         public PrivilegePage()
         {
             InitializeComponent();
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SEMS.Domain;
+using System.Threading;
 
 namespace SEMS.Adapter.UI
 {
@@ -27,7 +28,9 @@ namespace SEMS.Adapter.UI
         {
             InitializeComponent();
             this.DataContext = (object)Cache.Instance;
+            
         }
+
 
         private void searchData(object sender, RoutedEventArgs e)
         {
@@ -56,7 +59,14 @@ namespace SEMS.Adapter.UI
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             Department selectedDept = (Department)deptList.SelectedItem;
-            DepartmentManagement.deleteDepartment(selectedDept);
+            try
+            {
+                DepartmentManagement.deleteDepartment(selectedDept);
+            }
+            catch (Exception except){
+                MessageBox.Show(except.Message);
+                
+            }
             Cache cache = Cache.Instance;
             cache.update();
             cache.NotifyPropertyChanged("DeptCache");
@@ -69,5 +79,6 @@ namespace SEMS.Adapter.UI
             cache.update();
             cache.NotifyPropertyChanged("DeptCache");
         }
+
     }
 }

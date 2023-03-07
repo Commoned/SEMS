@@ -29,11 +29,14 @@ namespace SEMS.Application
 
             return true;
         }
-        public static bool deleteDepartment(Department deleeteDept)
+        public static bool deleteDepartment(Department deleteDept)
         {
             
-
-            return true;
+            if(dataHandler.getEmployeesByDepartmentId(deleteDept.Id).Count != 0)
+            {
+                throw new Exception("There are Employees tied to this Department");
+            }
+            return dataHandler.deleteDepartment(deleteDept);
         }
     }
 }

@@ -24,9 +24,13 @@ namespace SEMS.Application
             return dataHandler.updateSite(updateSite);
         }
 
-        public static bool deleteSite(Site updateSite)
+        public static bool deleteSite(Site deleteSite)
         {
-            return true;
+            if (dataHandler.getEmployeesBySiteId(deleteSite.Id).Count != 0)
+            {
+                throw new Exception("There are Employees tied to this Site");
+            }
+            return dataHandler.deleteSite(deleteSite);
         }
     }
 }
