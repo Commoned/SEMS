@@ -29,11 +29,9 @@ namespace SEMS.Application
 
             return true;
         }
-        public static bool deleteDepartment(Department deleeteDept)
+        public static bool deleteDepartment(Department deleteDept)
         {
-            
-
-            return true;
+            return dataHandler.deleteDepartment(deleteDept);
         }
     }
 }

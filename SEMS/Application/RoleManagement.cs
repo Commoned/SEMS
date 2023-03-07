@@ -28,9 +28,9 @@ namespace SEMS.Application
             return dataHandler.updateRole(updateRole);
         }
 
-        public static bool deleteRole(Role updateRole)
+        public static bool deleteRole(Role deleteRole)
         {
-            return true;
+            return dataHandler.deleteRole(deleteRole);
         }
     }
 }

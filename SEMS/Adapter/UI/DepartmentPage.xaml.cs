@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SEMS.Domain;
+using System.Threading;
 
 namespace SEMS.Adapter.UI
 {
@@ -27,7 +28,9 @@ namespace SEMS.Adapter.UI
         {
             InitializeComponent();
             this.DataContext = (object)Cache.Instance;
+            
         }
+
 
         private void searchData(object sender, RoutedEventArgs e)
         {
@@ -69,5 +72,6 @@ namespace SEMS.Adapter.UI
             cache.update();
             cache.NotifyPropertyChanged("DeptCache");
         }
+
     }
 }

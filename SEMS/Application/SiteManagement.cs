@@ -24,9 +24,9 @@ namespace SEMS.Application
             return dataHandler.updateSite(updateSite);
         }
 
-        public static bool deleteSite(Site updateSite)
+        public static bool deleteSite(Site deleteSite)
         {
-            return true;
+            return dataHandler.deleteSite(deleteSite);
         }
     }
 }

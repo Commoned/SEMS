@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -58,68 +59,63 @@ namespace SEMS.Adapter
         private void openNextPage(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            Window window;
+            
             string type;
             switch (button.Name)
             {
-                
                 case "employeeButton":
                     type = "employeeGrid";
-                    window = new Window
+                    
+                    var thread1 = new Thread(() => new Window
                     {
                         Title = "SEMS - Employees",
                         Content = new EmployeePage()
-                    };
-                    window.ShowDialog();
+                    }.ShowDialog());
+                    thread1.SetApartmentState(ApartmentState.STA);
+                    thread1.Start();
+
                     break;
                 case "siteButton":
                     type = "siteGrid";
-                    window = new Window
+                    var thread2 = new Thread(() => new Window
                     {
-                        Title = "SEMS - Employees",
+                        Title = "SEMS - Sites",
                         Content = new SitePage()
-                    };
-                    window.ShowDialog();
+                    }.ShowDialog());
+                    thread2.SetApartmentState(ApartmentState.STA);
+                    thread2.Start();
+                    //window.ShowDialog();
                     break;
                 case "departmentButton":
                     type = "departmentGrid";
-                    window = new Window
+                    var thread3 = new Thread(() => new Window
                     {
-                        Title = "SEMS - Employees",
+                        Title = "SEMS - Departments",
                         Content = new DepartmentPage()
-                    };
-                    window.ShowDialog();
+                    }.ShowDialog());
+                    thread3.SetApartmentState(ApartmentState.STA);
+                    thread3.Start();
+                    //window.ShowDialog();
                     break;
                 case "roleButton":
                     type = "roleGrid";
-                    window = new Window
+                    var thread4 = new Thread(() => new Window
                     {
-                        Title = "SEMS - Employees",
+                        Title = "SEMS - Roles",
                         Content = new RolePage()
-                    };
-                    window.ShowDialog();
-                    break;
-                case "privilegeButton":
-                    type = "privilegeGrid";
+                    }.ShowDialog());
+                    thread4.SetApartmentState(ApartmentState.STA);
+                    thread4.Start();
+                    //window.ShowDialog();
                     break;
                 default:
                     type = "";
                     break;
             }
             
-            
-            GC.Collect();
         }
 
-        public void newWindow(string type)
-        {
-            Window window = new Window
-            {
-                Title = "SEMS - Employees",
-                Content = new EmployeePage()
-            };
-            window.ShowDialog();
-        }
+       
 
     }
 }
