@@ -48,6 +48,7 @@ namespace SEMS.Adapter.UI
         {
             Employee selectedEmp = (Employee)employeeList.SelectedItem;
             editWindow.DataContext = selectedEmp;
+            cmbSite.Text = selectedEmp.Site.Name;
 
         }
 

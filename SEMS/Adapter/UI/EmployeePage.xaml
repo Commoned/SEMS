@@ -153,7 +153,7 @@
                 </UniformGrid>
                 <UniformGrid VerticalAlignment="Top" Columns="2">
                     <TextBlock Text="Site:"></TextBlock>
-                    <ComboBox Name="cmbSite" DropDownOpened="cmbSite_DropDownOpened" IsEditable="False" Text="{Binding Path=Site.Name}" IsTextSearchEnabled="True" IsTextSearchCaseSensitive="False" StaysOpenOnEdit="True" TextSearch.TextPath="Name" >
+                    <ComboBox Name="cmbSite" DropDownOpened="cmbSite_DropDownOpened" IsEditable="False" Text="{Binding Path=Site.Name}" IsTextSearchEnabled="False" IsTextSearchCaseSensitive="False" StaysOpenOnEdit="True" TextSearch.TextPath="Name" >
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
