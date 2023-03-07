@@ -7,12 +7,14 @@
             Name = name;
             Address = new Address(country, state, zipcode, city, street, streetnumber);
         }
-        override
-        public string ToString()
+        public Site(int id, string name, string country, string state, string zipcode, string city, string street, string streetnumber)
         {
-            return Name;
+            Id = id;
+            Name = name;
+            Address = new Address(country, state, zipcode, city, street, streetnumber);
         }
 
+        public int Id { get; set; }
         public string Name { get; set; }
         public Address Address { get; set; }
     }
