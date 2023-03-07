@@ -49,6 +49,12 @@ namespace SEMS.Application
         bool addDepartment(Department department);
         bool addSite(Domain.Site site);
         bool addRole(Role role);
+
+        bool updateEmployee(Employee employee);
+        bool updateUser(User user);
+        bool updateDepartment(Department department);
+        bool updateSite(Domain.Site site);
+        bool updateRole(Role role);
     }
     internal static class EmployeeManagement
     {
@@ -86,6 +92,22 @@ namespace SEMS.Application
             //Console.WriteLine(dataHandler.addRole(myrole));
             //Domain.Site site = new Domain.Site(name: "Telekom", country: "GER", state: "Bayern", zipcode: "80331", city: "München", street: "Haupstraße", streetnumber: "1");
             //Console.WriteLine(dataHandler.addSite(site));
+            //Role myRole = dataHandler.getRoleById(5);
+            //myRole.Description = "Krass faul";
+            //Console.WriteLine(dataHandler.updateRole(myRole));
+            //Domain.Site mysite = dataHandler.getSiteById(4);
+            //mysite.Name = "Gute Telekom";
+            //Console.WriteLine(dataHandler.updateSite(mysite));
+            //Department mydepartment = new Department("Gebäude 11", "Elftes Gebäude", "4711");
+            //dataHandler.addDepartment(mydepartment);
+            //Department mydepartment = dataHandler.getDepartmentById(2);
+            //mydepartment.Description = "Das ist das elfte Gebäude";
+            //Console.WriteLine(dataHandler.updateDepartment(mydepartment));
+            //Employee myemployee = new Employee(name: "Daniel", surname: "Ringler", title: "Fürst", privilege: new Privilege("admin"), country: "GER", state: "BaWü", zipcode: "76227", city: "Karlsruhe", street: "Karlsruher Straße", streetnumber: "1", site: dataHandler.getSiteById(1), department: dataHandler.getDepartmentById(1), role: dataHandler.getRoleById(1), salary: new Salary(187, 0, 0, "EUR"));
+            //Console.WriteLine(dataHandler.addEmployee(myemployee));
+            //Employee myemployee = dataHandler.getEmployeeById(2);
+            //myemployee.Salary.baseSalary = 76227;
+            //Console.WriteLine(dataHandler.updateEmployee(myemployee));
 
             /*
             Console.WriteLine("DIESE IST KAKA");
