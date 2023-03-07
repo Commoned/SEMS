@@ -30,6 +30,11 @@ namespace SEMS.Application
 
         public static bool deleteRole(Role deleteRole)
         {
+
+            if (dataHandler.getEmployeesByRoleId(deleteRole.Id).Count != 0)
+            {
+                throw new Exception("There are Employees tied to this Role");
+            }
             return dataHandler.deleteRole(deleteRole);
         }
     }

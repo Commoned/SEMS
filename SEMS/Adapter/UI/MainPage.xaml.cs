@@ -106,7 +106,16 @@ namespace SEMS.Adapter
                     }.ShowDialog());
                     thread4.SetApartmentState(ApartmentState.STA);
                     thread4.Start();
-                    //window.ShowDialog();
+                    //window.ShowDialog
+                    break;
+                case "privilegeButton":
+                    var thread5 = new Thread(() => new Window
+                    {
+                        Title = "SEMS - Roles",
+                        Content = new PrivilegePage()
+                    }.ShowDialog());
+                    thread5.SetApartmentState(ApartmentState.STA);
+                    thread5.Start();
                     break;
                 default:
                     type = "";
@@ -115,7 +124,6 @@ namespace SEMS.Adapter
             
         }
 
-       
-
+        
     }
 }

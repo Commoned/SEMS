@@ -58,7 +58,14 @@ namespace SEMS.Adapter.UI
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             Site selectedSite = (Site)siteList.SelectedItem;
+            try
+            {
             SiteManagement.deleteSite(selectedSite);
+            }
+            catch (Exception except){
+                MessageBox.Show(except.Message);
+            }
+
             Cache cache = Cache.Instance;
             cache.update();
             cache.NotifyPropertyChanged("SiteCache");

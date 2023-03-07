@@ -31,6 +31,11 @@ namespace SEMS.Application
         }
         public static bool deleteDepartment(Department deleteDept)
         {
+            
+            if(dataHandler.getEmployeesByDepartmentId(deleteDept.Id).Count != 0)
+            {
+                throw new Exception("There are Employees tied to this Department");
+            }
             return dataHandler.deleteDepartment(deleteDept);
         }
     }
