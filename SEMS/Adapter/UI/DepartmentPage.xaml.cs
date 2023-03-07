@@ -45,5 +45,17 @@ namespace SEMS.Adapter.UI
             Site selectedEmployee = (Site)employeeList.SelectedItem;
             // TODO Updateing view
         }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            Site selectedEmployee = (Site)employeeList.SelectedItem;
+            // TODO Updateing view
+        }
+
+        private void New_Click(object sender, RoutedEventArgs e)
+        {
+            Site selectedEmployee = (Site)employeeList.SelectedItem;
+            // TODO Updateing view
+        }
     }
 }

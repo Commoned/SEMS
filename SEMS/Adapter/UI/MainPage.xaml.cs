@@ -46,10 +46,7 @@ namespace SEMS.Adapter
             window.ShowDialog();
             
         }
-        private void createEmployee(object sender, RoutedEventArgs e)
-        {
-            EmployeeManagement.newEmployee();
-        }
+        
         private void openSettings(object sender, RoutedEventArgs e)
         {
             ColorAnimation ca = new ColorAnimation(Colors.Blue, new Duration(TimeSpan.FromSeconds(4)));

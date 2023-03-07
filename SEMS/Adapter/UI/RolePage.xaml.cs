@@ -34,7 +34,7 @@ namespace SEMS.Adapter.UI
             Cache cache = Cache.Instance;
             Debug.WriteLine(cache.EmployeeCache);
         }
-        private void employeeList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void role_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
 
@@ -43,7 +43,17 @@ namespace SEMS.Adapter.UI
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            Site selectedEmployee = (Site)employeeList.SelectedItem;
+            Site selectedEmployee = (Site)roleList.SelectedItem;
+            // TODO Updateing view
+        }
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            Site selectedEmployee = (Site)roleList.SelectedItem;
+            // TODO Updateing view
+        }
+        private void New_Click(object sender, RoutedEventArgs e)
+        {
+            Site selectedEmployee = (Site)roleList.SelectedItem;
             // TODO Updateing view
         }
     }

@@ -9,7 +9,7 @@ namespace SEMS.Domain
     public class Employee
     {
         
-
+        
         public Employee(string name, string surname, string title, Privilege privilege, int id, string country, string state, string zipcode, string city, string street, string streetnumber, Site site, Department department, Role role, Salary salary)
 
         {
@@ -38,7 +38,7 @@ namespace SEMS.Domain
             Role = role;
             Salary = salary;
         }
-
+        
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Title { get ; set; }
