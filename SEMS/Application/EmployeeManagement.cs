@@ -89,6 +89,16 @@ namespace SEMS.Application
             return dataHandler.deleteEmployee(employee);
         }
 
+        public static bool validateTextInput(string text)
+        {
+            return false;
+        }
+
+        public static bool validateNumericTextInput(string text) 
+        { 
+            return false; 
+        }
+
     }
 }
 

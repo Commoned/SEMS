@@ -23,10 +23,29 @@ namespace SEMS.Domain
 
         public decimal NetSalary => CalculateNetSalary();
 
-
         public decimal CalculateNetSalary()
         {
             return baseSalary + bonuses - deductions;
+        }
+
+        public decimal CalculateAnnualSalary(decimal months)
+        {
+            return baseSalary * months;
+        }
+
+        public decimal CalculateAnnualNetSalary(decimal months)
+        {
+            return NetSalary * months;
+        }
+
+        public decimal CalculateHourlySalary(decimal days, decimal hours)
+        {
+            return baseSalary / (days * hours);
+        }
+
+        public decimal CalculateHourlyNetSalary(decimal days, decimal hours)
+        {
+            return NetSalary / (days * hours);
         }
     }
 }
