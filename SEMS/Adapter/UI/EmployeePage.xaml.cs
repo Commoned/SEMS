@@ -122,7 +122,7 @@ namespace SEMS.Adapter.UI
         private void deleteEmployee_Click(object sender, RoutedEventArgs e)
         {
             Employee selectedEmployee = (Employee)employeeList.SelectedItem;
-            EmployeeManagement.deleteEmployee();
+            EmployeeManagement.deleteEmployee(selectedEmployee);
             Cache cache = Cache.Instance;
             cache.update();
             cache.NotifyPropertyChanged("EmployeeCache");
