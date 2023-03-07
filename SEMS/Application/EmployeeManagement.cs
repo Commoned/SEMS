@@ -82,9 +82,10 @@ namespace SEMS.Application
 
         }
 
-        public static bool updateEmployee()
+        public static bool updateEmployee(Employee updateEmp)
         {
             Debug.WriteLine("Updating Employee");
+            dataHandler.updateEmployee(updateEmp);
             return true;
         }
         public static bool deleteEmployee(Employee employee)
