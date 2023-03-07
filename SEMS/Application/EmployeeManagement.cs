@@ -50,6 +50,12 @@ namespace SEMS.Application
         bool addDepartment(Department department);
         bool addSite(Domain.Site site);
         bool addRole(Role role);
+
+        bool updateEmployee(Employee employee);
+        bool updateUser(User user);
+        bool updateDepartment(Department department);
+        bool updateSite(Domain.Site site);
+        bool updateRole(Role role);
     }
     internal static class EmployeeManagement
     {
@@ -62,10 +68,12 @@ namespace SEMS.Application
         */
         public static bool newEmployee(string name, string surname, string title, Privilege privilege, string country, string state, string zipcode, string city, string street, string streetnumber, Domain.Site site, Department department, Role role, Salary salary)
         {
+
             Debug.Write("Creating Employee");
             Employee newEmp = new Employee(name,surname,title,privilege,country,state,zipcode,city,street,streetnumber,site,department,role,salary);
             dataHandler.addEmployee(newEmp);
             return true;
+
         }
 
         public static bool updateEmployee()
