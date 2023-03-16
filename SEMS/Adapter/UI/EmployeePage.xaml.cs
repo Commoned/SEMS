@@ -91,7 +91,7 @@ namespace SEMS.Adapter.UI
             new Salary(decimal.Parse(boxSalary.Text), 0, 0, boxCurrency.Text);
             EmployeeManagement.updateEmployee(selectedEmployee);
             Cache cache = Cache.Instance;
-            cache.update();
+            cache.Update();
             cache.NotifyPropertyChanged("EmployeeCache");
         }
 
@@ -116,7 +116,7 @@ namespace SEMS.Adapter.UI
                 dataHandler.getRolesByName(cmbRole.Text).ElementAt(0),
                 new Salary(decimal.Parse(boxSalary.Text), 0, 0, boxCurrency.Text));
             Cache cache = Cache.Instance;
-            cache.update();
+            cache.Update();
             cache.NotifyPropertyChanged("EmployeeCache");
         }
 
@@ -125,7 +125,7 @@ namespace SEMS.Adapter.UI
             Employee selectedEmployee = (Employee)employeeList.SelectedItem;
             EmployeeManagement.deleteEmployee(selectedEmployee);
             Cache cache = Cache.Instance;
-            cache.update();
+            cache.Update();
             cache.NotifyPropertyChanged("EmployeeCache");
         }
     }

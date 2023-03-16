@@ -47,7 +47,7 @@ namespace SEMS.Adapter.UI
             selectedRole.Description = boxDescription.Text;
             RoleManagement.updateRole(selectedRole);
             Cache cache = Cache.Instance;
-            cache.update();
+            cache.Update();
             cache.NotifyPropertyChanged("RoleCache");
         }
         private void Delete_Click(object sender, RoutedEventArgs e)
@@ -62,14 +62,14 @@ namespace SEMS.Adapter.UI
             }
 
     Cache cache = Cache.Instance;
-            cache.update();
+            cache.Update();
             cache.NotifyPropertyChanged("RoleCache");
         }
         private void New_Click(object sender, RoutedEventArgs e)
         {
             RoleManagement.newRole(boxName.Text, boxDescription.Text);
             Cache cache = Cache.Instance;
-            cache.update();
+            cache.Update();
             cache.NotifyPropertyChanged("RoleCache");
         }
     }

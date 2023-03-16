@@ -16,12 +16,8 @@ namespace SEMS.Application
         private static readonly Lazy<Cache> lazy =
             new Lazy<Cache>(() => new Cache());
 
-        
-
         public static Cache Instance { get { return lazy.Value; } }
         private static DataHandler database = new Database();
-
-
 
         private Cache()
         {
@@ -38,7 +34,7 @@ namespace SEMS.Application
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
-        public void update()
+        public void Update()
         {
             EmployeeCache = database.getEmployeesByName("");
             DeptCache = database.getDepartmentsByName("");

@@ -52,7 +52,7 @@ namespace SEMS.Adapter.UI
             selectedDept.AccountingUnit = boxAccountingUnit.Text;
             DepartmentManagement.updateDepartment(selectedDept);
             Cache cache = Cache.Instance;
-            cache.update();
+            cache.Update();
             cache.NotifyPropertyChanged("DeptCache");
         }
 
@@ -68,7 +68,7 @@ namespace SEMS.Adapter.UI
                 
             }
             Cache cache = Cache.Instance;
-            cache.update();
+            cache.Update();
             cache.NotifyPropertyChanged("DeptCache");
         }
 
@@ -76,7 +76,7 @@ namespace SEMS.Adapter.UI
         {
             DepartmentManagement.newDepartment(boxName.Text,boxDescription.Text,boxAccountingUnit.Text);
             Cache cache = Cache.Instance;
-            cache.update();
+            cache.Update();
             cache.NotifyPropertyChanged("DeptCache");
         }
 

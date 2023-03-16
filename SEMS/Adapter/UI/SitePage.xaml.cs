@@ -52,7 +52,7 @@ namespace SEMS.Adapter.UI
             selectedSite.Address.Number = boxStreetNumber.Text;
             SiteManagement.updateSite(selectedSite);
             Cache cache = Cache.Instance;
-            cache.update();
+            cache.Update();
             cache.NotifyPropertyChanged("SiteCache");
         }
         private void Delete_Click(object sender, RoutedEventArgs e)
@@ -67,14 +67,14 @@ namespace SEMS.Adapter.UI
             }
 
             Cache cache = Cache.Instance;
-            cache.update();
+            cache.Update();
             cache.NotifyPropertyChanged("SiteCache");
         }
         private void New_Click(object sender, RoutedEventArgs e)
         {
             SiteManagement.newSite(boxName.Text,boxCountry.Text,boxStateProvince.Text,boxZipcode.Text,boxCity.Text,boxStreet.Text,boxStreetNumber.Text) ;
             Cache cache = Cache.Instance;
-            cache.update();
+            cache.Update();
             cache.NotifyPropertyChanged("SiteCache");
         }
     }
