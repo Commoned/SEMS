@@ -17,30 +17,46 @@ namespace SEMS.Application
             new Lazy<Cache>(() => new Cache());
 
         public static Cache Instance { get { return lazy.Value; } }
+
         private static DataHandler database = new Database();
 
         private Cache()
         {
-            EmployeeCache = database.getEmployeesByName("");
-            DeptCache = database.getDepartmentsByName("");
-            RoleCache = database.getRolesByName("");
-            SiteCache = database.getSitesByName("");
         }
 
-        public ObservableCollection<Employee> EmployeeCache { get; private set; }
-        public ObservableCollection<Department> DeptCache { get; private set; }
-        public ObservableCollection<Site> SiteCache { get; private set; }
-        public ObservableCollection<Role> RoleCache { get; private set; }
+        public ObservableCollection<Employee> EmployeeCache {
+            get
+            {
+                return database.getEmployeesByName("");
+            }
+            private set { }
+        }
+        public ObservableCollection<Department> DeptCache { 
+            get
+            {
+                return database.getDepartmentsByName("");
+            }
+            private set { }
+        }
+        public ObservableCollection<Site> SiteCache {
+            get
+            {
+                return database.getSitesByName("");
+            }
+            private set { }
+        }
+        public ObservableCollection<Role> RoleCache {
+            get
+            {
+                return database.getRolesByName("");
+            }
+            private set { }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
         public void Update()
         {
-            EmployeeCache = database.getEmployeesByName("");
-            DeptCache = database.getDepartmentsByName("");
-            RoleCache = database.getRolesByName("");
-            SiteCache = database.getSitesByName("");
-
             NotifyPropertyChanged("EmployeeCache");
             NotifyPropertyChanged("DeptCache");
             NotifyPropertyChanged("RoleCache");
@@ -52,7 +68,6 @@ namespace SEMS.Application
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         }
-
 
     }
 }
