@@ -71,6 +71,8 @@ namespace SEMS.Adapter.UI
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
+            
+            
 
             Employee selectedEmployee = (Employee)employeeList.SelectedItem;
             selectedEmployee.Name = boxName.Text;
@@ -127,6 +129,56 @@ namespace SEMS.Adapter.UI
             Cache cache = Cache.Instance;
             cache.Update();
             cache.NotifyPropertyChanged("EmployeeCache");
+        }
+
+        private void validateInput(object sender, KeyEventArgs e)
+        {
+            IValidationStrategy strategy;
+            InputValidator validator ;
+            TextBox textBox = (TextBox)sender;
+            List<TextBox> textInputs = new List<TextBox> { boxCity, boxName, boxStateProvince, boxStreet, boxSurname};
+            List<TextBox> threeUpper = new List<TextBox> { boxCurrency, boxCountry };
+            if (textInputs.Contains(sender))
+            {
+                strategy = new NameValidator();
+                validator = new InputValidator(strategy);
+                bool isValid = validator.Validate(textBox.Text);
+                if (!isValid) { textBox.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0)); }
+                else { textBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0)); }
+            }
+            if (threeUpper.Contains(sender))
+            {
+                strategy = new ThreeUpperValidator();
+                validator = new InputValidator(strategy);
+                bool isValid = validator.Validate(textBox.Text);
+                if (!isValid) { textBox.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0)); }
+                else { textBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0)); }
+            }
+            if (sender == boxStreetNumber)
+            {
+                strategy = new StreetNumberValidator();
+                validator = new InputValidator(strategy);
+                bool isValid = validator.Validate(textBox.Text);
+                if (!isValid) { textBox.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0)); }
+                else { textBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0)); }
+            }
+            if (sender == boxZipcode)
+            {
+                strategy = new ZipcodeValidator();
+                validator = new InputValidator(strategy);
+                bool isValid = validator.Validate(textBox.Text);
+                if (!isValid) { textBox.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0)); }
+                else { textBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0)); }
+            }
+            if (sender == boxSalary)
+            {
+                strategy = new SalaryValidator();
+                validator = new InputValidator(strategy);
+                bool isValid = validator.Validate(textBox.Text);
+                if (!isValid) { textBox.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0)); }
+                else { textBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0)); }
+            }
+
         }
     }
 }
