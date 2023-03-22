@@ -27,7 +27,7 @@ namespace SEMS.Adapter
     /// <summary>
     /// Interaktionslogik für MainPage.xaml
     /// </summary>
-    public partial class MainPage : UserControl,GuiAdapter
+    public partial class MainPage : Window,GuiAdapter
     {
         
         public MainPage()
@@ -38,13 +38,8 @@ namespace SEMS.Adapter
 
         public void invokeGUI()
         {
-
-            Window window = new Window {
-                Title = "SEMS",
-                Content = new MainPage()
-            };
+            Window window = new MainPage();
             window.ShowDialog();
-            
         }
         
         private void openSettings(object sender, RoutedEventArgs e)
@@ -65,56 +60,49 @@ namespace SEMS.Adapter
                 case "employeeButton":
                     type = "employeeGrid";
                     
-                    var thread1 = new Thread(() => new Window
-                    {
+                    Window empWindow = new Window{
                         Title = "SEMS - Employees",
                         Content = new EmployeePage()
-                    }.ShowDialog());
-                    thread1.SetApartmentState(ApartmentState.STA);
-                    thread1.Start();
+                    };
+                    empWindow.Show();
 
                     break;
                 case "siteButton":
                     type = "siteGrid";
-                    var thread2 = new Thread(() => new Window
+                    Window siteWindow = new Window
                     {
                         Title = "SEMS - Sites",
                         Content = new SitePage()
-                    }.ShowDialog());
-                    thread2.SetApartmentState(ApartmentState.STA);
-                    thread2.Start();
-                    //window.ShowDialog();
+                    };
+                    siteWindow.Show();
+
                     break;
                 case "departmentButton":
                     type = "departmentGrid";
-                    var thread3 = new Thread(() => new Window
+                    Window depWindow = new Window
                     {
                         Title = "SEMS - Departments",
                         Content = new DepartmentPage()
-                    }.ShowDialog());
-                    thread3.SetApartmentState(ApartmentState.STA);
-                    thread3.Start();
-                    //window.ShowDialog();
+                    };
+                    depWindow.Show();
+
                     break;
                 case "roleButton":
                     type = "roleGrid";
-                    var thread4 = new Thread(() => new Window
+                    Window roleWindow =  new Window
                     {
                         Title = "SEMS - Roles",
                         Content = new RolePage()
-                    }.ShowDialog());
-                    thread4.SetApartmentState(ApartmentState.STA);
-                    thread4.Start();
-                    //window.ShowDialog
+                    };
+                    roleWindow.Show();
                     break;
                 case "privilegeButton":
-                    var thread5 = new Thread(() => new Window
+                    Window privWindow = new Window
                     {
-                        Title = "SEMS - Roles",
+                        Title = "SEMS - Privileges",
                         Content = new PrivilegePage()
-                    }.ShowDialog());
-                    thread5.SetApartmentState(ApartmentState.STA);
-                    thread5.Start();
+                    };
+                    privWindow.Show();
                     break;
                 default:
                     type = "";
