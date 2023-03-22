@@ -18,37 +18,43 @@ namespace SEMS.Application
 
         public static Cache Instance { get { return lazy.Value; } }
 
-        private static DataHandler database = new Database();
+        private static readonly DataHandler database = new Database();
 
         private Cache()
         {
         }
-
+        
         public ObservableCollection<Employee> EmployeeCache {
-            get
+            get 
             {
-                return database.getEmployeesByName("");
+                ObservableCollection<Employee> placeholder = database.getEmployeesByName("");
+                return placeholder;
             }
             private set { }
         }
         public ObservableCollection<Department> DeptCache { 
             get
             {
-                return database.getDepartmentsByName("");
+                ObservableCollection<Department> placeholder = database.getDepartmentsByName("");
+                return placeholder;
             }
             private set { }
         }
         public ObservableCollection<Site> SiteCache {
             get
             {
-                return database.getSitesByName("");
+                ObservableCollection<Site> placeholder = database.getSitesByName("");
+                return placeholder;
             }
             private set { }
         }
+        
         public ObservableCollection<Role> RoleCache {
             get
             {
-                return database.getRolesByName("");
+                
+                ObservableCollection<Role> placeholder = database.getRolesByName("");
+                return placeholder;
             }
             private set { }
         }
@@ -62,6 +68,7 @@ namespace SEMS.Application
             NotifyPropertyChanged("RoleCache");
             NotifyPropertyChanged("SiteCache");
         }
+
         public void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
 

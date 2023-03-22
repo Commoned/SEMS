@@ -14,7 +14,7 @@ namespace SEMS.Adapter
 {
     internal class Database : DataHandler
     {
-        private string dblocation = "Data Source = ..\\..\\Adapter\\Database\\sems.sqlite";
+        private string dblocation = "Data Source = ..\\..\\..\\Adapter\\Database\\sems.sqlite";
         public Database()
         {
         }
