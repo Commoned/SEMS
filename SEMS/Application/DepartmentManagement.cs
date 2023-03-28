@@ -16,6 +16,8 @@ namespace SEMS.Application
     internal static class DepartmentManagement
     {
         static DataHandler dataHandler = new Database();
+        
+
         public static bool newDepartment(string name, string descr, string accountingUnit)
         {
             Debug.Write("Creating Dept");

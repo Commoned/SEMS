@@ -1,23 +1,41 @@
 ﻿
 using SEMS.Domain;
-using SEMS.Adapter;
 using Moq;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.ObjectModel;
 
 namespace SEMSTests
 {
     [TestClass]
-    class DatabaseTests
+    public class EmployeeManagementTests
     {
         [TestMethod]
-        public void GetEmployees_byName_Test()
+        public void GetAllEmployees_ValidInput_ReturnsCorrectResult()
         {
-            var mock = new Mock<Database>();
+            var mock = new Mock<DataHandler>();
+            ObservableCollection<Employee> employees = new ObservableCollection<Employee> 
+            {
+               employee_Max_Mustermann()
+            };
+            mock.Setup(p => p.getEmployeesByName("")).Returns(employees);
             // Arrange
-
+            EmployeeManagement target = new EmployeeManagement(mock.Object);
+            
             // Act 
 
+            var actual_employees = target.GetAllEmployees();
+            var actual_employee = actual_employees.ElementAt(0);
             // Assert
+            Assert.AreEqual(actual_employee.Name, employees[0].Name);
+            Assert.AreEqual(actual_employee.Surname, employees[0].Surname);
+        }
+
+      
+        public Employee employee_Max_Mustermann()
+        {
+            // Es wird nur nach Namen gesucht die anderen Werte sind hier irrelevant
+            Employee employee = new Employee("Max", "Mustermann", "", null, "", "", "", "", "", "", null, null, null, null);
+            return employee;
         }
     }
 }

@@ -53,7 +53,7 @@ namespace SEMS.Adapter
         private void openNextPage(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            
+            Database database = new Database();
             string type;
             switch (button.Name)
             {
@@ -62,7 +62,7 @@ namespace SEMS.Adapter
                     
                     Window empWindow = new Window{
                         Title = "SEMS - Employees",
-                        Content = new EmployeePage()
+                        Content = new EmployeePage(new EmployeeManagement(database))
                     };
                     empWindow.Show();
 

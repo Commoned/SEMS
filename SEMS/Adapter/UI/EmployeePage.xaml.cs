@@ -30,11 +30,13 @@ namespace SEMS.Adapter.UI
     public partial class EmployeePage : UserControl
     {
         DataHandler dataHandler = new Database();
+        EmployeeManagement employeeManagement;
 
-        public EmployeePage()
+        public EmployeePage(EmployeeManagement employeeManagement)
         {
             InitializeComponent();
-            this.DataContext = (object)Cache.Instance;
+            this.DataContext = Cache.Instance;
+            this.employeeManagement = employeeManagement;
         }
        
         
@@ -91,7 +93,7 @@ namespace SEMS.Adapter.UI
             selectedEmployee.Department = dataHandler.getDepartmentsByName(cmbDepartment.Text).ElementAt(0);
             selectedEmployee.Role = dataHandler.getRolesByName(cmbRole.Text).ElementAt(0);
             new Salary(decimal.Parse(boxSalary.Text), 0, 0, boxCurrency.Text);
-            EmployeeManagement.updateEmployee(selectedEmployee);
+            employeeManagement.updateEmployee(selectedEmployee);
             Cache cache = Cache.Instance;
             cache.Update();
             cache.NotifyPropertyChanged("EmployeeCache");
@@ -100,7 +102,7 @@ namespace SEMS.Adapter.UI
         private void newEmployee_Click(object sender, RoutedEventArgs e)
         {
             Collection<object> pushColl = new Collection<object>();
-            EmployeeManagement.newEmployee(
+            employeeManagement.newEmployee(
                 boxName.Text,
                 boxSurname.Text,
                 boxTitle.Text,
@@ -125,7 +127,7 @@ namespace SEMS.Adapter.UI
         private void deleteEmployee_Click(object sender, RoutedEventArgs e)
         {
             Employee selectedEmployee = (Employee)employeeList.SelectedItem;
-            EmployeeManagement.deleteEmployee(selectedEmployee);
+            employeeManagement.deleteEmployee(selectedEmployee);
             Cache cache = Cache.Instance;
             cache.Update();
             cache.NotifyPropertyChanged("EmployeeCache");

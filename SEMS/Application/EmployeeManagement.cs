@@ -63,40 +63,39 @@ namespace SEMS.Application
         bool deleteSite(Domain.Site site);
         bool deleteRole(Role role);
     }
-    internal static class EmployeeManagement
+    public class EmployeeManagement
     {
-        static DataHandler dataHandler = new Database();
+        DataHandler dataHandler;
 
-        public static bool newEmployee(string name, string surname, string title, Privilege privilege, string country, string state, string zipcode, string city, string street, string streetnumber, Domain.Site site, Department department, Role role, Salary salary)
+        public EmployeeManagement(DataHandler dataInterface)
+        {
+            this.dataHandler = dataInterface;
+        }
+
+        public bool newEmployee(string name, string surname, string title, Privilege privilege, string country, string state, string zipcode, string city, string street, string streetnumber, Domain.Site site, Department department, Role role, Salary salary)
         {
 
             Debug.WriteLine("Creating Employee");
             Employee newEmp = new Employee(name,surname,title,privilege,country,state,zipcode,city,street,streetnumber,site,department,role,salary);
-            dataHandler.addEmployee(newEmp);
-            return true;
+            return dataHandler.addEmployee(newEmp);
 
         }
 
-        public static bool updateEmployee(Employee updateEmp)
+        public ObservableCollection<Employee> GetAllEmployees()
+        {
+            return dataHandler.getEmployeesByName("");
+        }
+
+        public bool updateEmployee(Employee updateEmp)
         {
             Debug.WriteLine("Updating Employee");
             dataHandler.updateEmployee(updateEmp);
             return true;
         }
-        public static bool deleteEmployee(Employee employee)
+        public bool deleteEmployee(Employee employee)
         {
             Debug.WriteLine($"Deleting Employee id={employee.Id}");
             return dataHandler.deleteEmployee(employee);
-        }
-
-        public static bool validateTextInput(string text)
-        {
-            return false;
-        }
-
-        public static bool validateNumericTextInput(string text) 
-        { 
-            return false; 
         }
 
     }

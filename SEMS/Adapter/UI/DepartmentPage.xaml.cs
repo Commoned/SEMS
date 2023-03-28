@@ -24,11 +24,11 @@ namespace SEMS.Adapter.UI
     /// </summary>
     public partial class DepartmentPage : UserControl
     {
+       
         public DepartmentPage()
         {
             InitializeComponent();
             this.DataContext = (object)Cache.Instance;
-            
         }
 
 
