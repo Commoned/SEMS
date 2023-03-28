@@ -23,36 +23,53 @@ namespace SEMS.Application
         public ObservableCollection<Employee> EmployeeCache {
             get 
             {
-                ObservableCollection<Employee> placeholder = database.getEmployeesByName("");
-                return placeholder;
-            }
-            private set { }
-        }
-        public ObservableCollection<Department> DeptCache { 
-            get
-            {
-                ObservableCollection<Department> placeholder = database.getDepartmentsByName("");
-                return placeholder;
-            }
-            private set { }
-        }
-        public ObservableCollection<Site> SiteCache {
-            get
-            {
-                ObservableCollection<Site> placeholder = database.getSitesByName("");
-                return placeholder;
+                return getPlaceholderEmployees();
             }
             private set { }
         }
         
-        public ObservableCollection<Role> RoleCache {
+        public ObservableCollection<Employee> getPlaceholderEmployees()
+        {
+            return database.getEmployeesByName("");
+        }
+
+        public ObservableCollection<Department> DeptCache { 
             get
             {
                 
-                ObservableCollection<Role> placeholder = database.getRolesByName("");
-                return placeholder;
+                return getPlaceholderDepartments();
             }
             private set { }
+        }
+
+        public ObservableCollection<Department> getPlaceholderDepartments()
+        {
+            return database.getDepartmentsByName("");
+        }
+
+        public ObservableCollection<Site> SiteCache {
+            get
+            { 
+                return getPlaceholderSites();
+            }
+            private set { }
+        }
+        public ObservableCollection<Site> getPlaceholderSites()
+        {
+            return database.getSitesByName("");
+        }
+
+        public ObservableCollection<Role> RoleCache {
+            get
+            {
+                return getPlaceholderRoles();
+            }
+            private set { }
+        }
+
+        public ObservableCollection<Role> getPlaceholderRoles()
+        {
+            return database.getRolesByName("");
         }
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
