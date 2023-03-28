@@ -24,17 +24,19 @@ namespace SEMS.Adapter.UI
     /// </summary>
     public partial class DepartmentPage : UserControl
     {
-        public DepartmentPage()
+        DepartmentManagement departmentManagement;
+        Cache cache;
+        public DepartmentPage(DepartmentManagement departmentManagement, Cache cache)
         {
             InitializeComponent();
-            this.DataContext = (object)Cache.Instance;
-            
+            this.DataContext = cache;
+            this.departmentManagement = departmentManagement;
+            this.cache = cache;
         }
 
 
         private void searchData(object sender, RoutedEventArgs e)
         {
-            Cache cache = Cache.Instance;
             Debug.WriteLine(cache.EmployeeCache);
         }
         private void deptList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -50,8 +52,7 @@ namespace SEMS.Adapter.UI
             selectedDept.Name = boxName.Text;
             selectedDept.Description = boxDescription.Text;
             selectedDept.AccountingUnit = boxAccountingUnit.Text;
-            DepartmentManagement.updateDepartment(selectedDept);
-            Cache cache = Cache.Instance;
+            departmentManagement.updateDepartment(selectedDept);
             cache.Update();
             cache.NotifyPropertyChanged("DeptCache");
         }
@@ -61,21 +62,19 @@ namespace SEMS.Adapter.UI
             Department selectedDept = (Department)deptList.SelectedItem;
             try
             {
-                DepartmentManagement.deleteDepartment(selectedDept);
+                departmentManagement.deleteDepartment(selectedDept);
             }
             catch (Exception except){
                 MessageBox.Show(except.Message);
                 
             }
-            Cache cache = Cache.Instance;
             cache.Update();
             cache.NotifyPropertyChanged("DeptCache");
         }
 
         private void New_Click(object sender, RoutedEventArgs e)
         {
-            DepartmentManagement.newDepartment(boxName.Text,boxDescription.Text,boxAccountingUnit.Text);
-            Cache cache = Cache.Instance;
+            departmentManagement.newDepartment(boxName.Text,boxDescription.Text,boxAccountingUnit.Text);
             cache.Update();
             cache.NotifyPropertyChanged("DeptCache");
         }

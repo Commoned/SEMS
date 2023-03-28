@@ -30,18 +30,20 @@ namespace SEMS.Adapter.UI
     public partial class EmployeePage : UserControl
     {
         DataHandler dataHandler = new Database();
+        EmployeeManagement employeeManagement;
+        Cache cache;
 
-        public EmployeePage()
+        public EmployeePage(EmployeeManagement employeeManagement, Cache cache)
         {
             InitializeComponent();
-            this.DataContext = (object)Cache.Instance;
+            this.DataContext = cache;
+            this.employeeManagement = employeeManagement;
+            this.cache = cache;
         }
        
         
         private void searchData(object sender, RoutedEventArgs e)
-        {
-            Cache cache = Cache.Instance;
-            Debug.WriteLine(cache.EmployeeCache);
+        { 
         }
         
         private void employeeList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -71,6 +73,8 @@ namespace SEMS.Adapter.UI
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
+            
+            
 
             Employee selectedEmployee = (Employee)employeeList.SelectedItem;
             selectedEmployee.Name = boxName.Text;
@@ -89,8 +93,7 @@ namespace SEMS.Adapter.UI
             selectedEmployee.Department = dataHandler.getDepartmentsByName(cmbDepartment.Text).ElementAt(0);
             selectedEmployee.Role = dataHandler.getRolesByName(cmbRole.Text).ElementAt(0);
             new Salary(decimal.Parse(boxSalary.Text), 0, 0, boxCurrency.Text);
-            EmployeeManagement.updateEmployee(selectedEmployee);
-            Cache cache = Cache.Instance;
+            employeeManagement.updateEmployee(selectedEmployee);
             cache.Update();
             cache.NotifyPropertyChanged("EmployeeCache");
         }
@@ -98,7 +101,7 @@ namespace SEMS.Adapter.UI
         private void newEmployee_Click(object sender, RoutedEventArgs e)
         {
             Collection<object> pushColl = new Collection<object>();
-            EmployeeManagement.newEmployee(
+            employeeManagement.newEmployee(
                 boxName.Text,
                 boxSurname.Text,
                 boxTitle.Text,
@@ -115,7 +118,7 @@ namespace SEMS.Adapter.UI
                 dataHandler.getDepartmentsByName(cmbDepartment.Text).ElementAt(0),
                 dataHandler.getRolesByName(cmbRole.Text).ElementAt(0),
                 new Salary(decimal.Parse(boxSalary.Text), 0, 0, boxCurrency.Text));
-            Cache cache = Cache.Instance;
+                
             cache.Update();
             cache.NotifyPropertyChanged("EmployeeCache");
         }
@@ -123,10 +126,59 @@ namespace SEMS.Adapter.UI
         private void deleteEmployee_Click(object sender, RoutedEventArgs e)
         {
             Employee selectedEmployee = (Employee)employeeList.SelectedItem;
-            EmployeeManagement.deleteEmployee(selectedEmployee);
-            Cache cache = Cache.Instance;
+            employeeManagement.deleteEmployee(selectedEmployee);
             cache.Update();
             cache.NotifyPropertyChanged("EmployeeCache");
+        }
+
+        private void validateInput(object sender, KeyEventArgs e)
+        {
+            IValidationStrategy strategy;
+            InputValidator validator ;
+            TextBox textBox = (TextBox)sender;
+            List<TextBox> textInputs = new List<TextBox> { boxCity, boxName, boxStateProvince, boxStreet, boxSurname};
+            List<TextBox> threeUpper = new List<TextBox> { boxCurrency, boxCountry };
+            if (textInputs.Contains(sender))
+            {
+                strategy = new NameValidator();
+                validator = new InputValidator(strategy);
+                bool isValid = validator.Validate(textBox.Text);
+                if (!isValid) { textBox.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0)); }
+                else { textBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0)); }
+            }
+            if (threeUpper.Contains(sender))
+            {
+                strategy = new ThreeUpperValidator();
+                validator = new InputValidator(strategy);
+                bool isValid = validator.Validate(textBox.Text);
+                if (!isValid) { textBox.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0)); }
+                else { textBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0)); }
+            }
+            if (sender == boxStreetNumber)
+            {
+                strategy = new StreetNumberValidator();
+                validator = new InputValidator(strategy);
+                bool isValid = validator.Validate(textBox.Text);
+                if (!isValid) { textBox.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0)); }
+                else { textBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0)); }
+            }
+            if (sender == boxZipcode)
+            {
+                strategy = new ZipcodeValidator();
+                validator = new InputValidator(strategy);
+                bool isValid = validator.Validate(textBox.Text);
+                if (!isValid) { textBox.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0)); }
+                else { textBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0)); }
+            }
+            if (sender == boxSalary)
+            {
+                strategy = new SalaryValidator();
+                validator = new InputValidator(strategy);
+                bool isValid = validator.Validate(textBox.Text);
+                if (!isValid) { textBox.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0)); }
+                else { textBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0)); }
+            }
+
         }
     }
 }

@@ -23,15 +23,17 @@ namespace SEMS.Adapter.UI
     /// </summary>
     public partial class RolePage : UserControl
     {
-        public RolePage()
+        Cache cache;
+        public RolePage(Cache cache)
         {
             InitializeComponent();
-            this.DataContext = (object)Cache.Instance;
+            this.DataContext = cache;
+            this.cache = cache;
         }
 
         private void searchData(object sender, RoutedEventArgs e)
         {
-            Cache cache = Cache.Instance;
+            
             Debug.WriteLine(cache.EmployeeCache);
         }
         private void role_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -46,7 +48,7 @@ namespace SEMS.Adapter.UI
             selectedRole.Name = boxName.Text;
             selectedRole.Description = boxDescription.Text;
             RoleManagement.updateRole(selectedRole);
-            Cache cache = Cache.Instance;
+            
             cache.Update();
             cache.NotifyPropertyChanged("RoleCache");
         }
@@ -61,14 +63,14 @@ namespace SEMS.Adapter.UI
                 
             }
 
-    Cache cache = Cache.Instance;
+    
             cache.Update();
             cache.NotifyPropertyChanged("RoleCache");
         }
         private void New_Click(object sender, RoutedEventArgs e)
         {
             RoleManagement.newRole(boxName.Text, boxDescription.Text);
-            Cache cache = Cache.Instance;
+            
             cache.Update();
             cache.NotifyPropertyChanged("RoleCache");
         }

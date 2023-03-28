@@ -23,15 +23,16 @@ namespace SEMS.Adapter.UI
     /// </summary>
     public partial class SitePage : UserControl
     {
-        public SitePage()
+        Cache cache;
+        public SitePage(Cache cache)
         {
             InitializeComponent();
-            this.DataContext = (object)Cache.Instance;
+            this.DataContext = cache;
+            this.cache = cache;
         }
 
         private void searchData(object sender, RoutedEventArgs e)
         {
-            Cache cache = Cache.Instance;
             Debug.WriteLine(cache.EmployeeCache);
         }
         private void siteList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -51,7 +52,6 @@ namespace SEMS.Adapter.UI
             selectedSite.Address.Street = boxStreet.Text;
             selectedSite.Address.Number = boxStreetNumber.Text;
             SiteManagement.updateSite(selectedSite);
-            Cache cache = Cache.Instance;
             cache.Update();
             cache.NotifyPropertyChanged("SiteCache");
         }
@@ -66,14 +66,13 @@ namespace SEMS.Adapter.UI
                 MessageBox.Show(except.Message);
             }
 
-            Cache cache = Cache.Instance;
             cache.Update();
             cache.NotifyPropertyChanged("SiteCache");
         }
         private void New_Click(object sender, RoutedEventArgs e)
         {
             SiteManagement.newSite(boxName.Text,boxCountry.Text,boxStateProvince.Text,boxZipcode.Text,boxCity.Text,boxStreet.Text,boxStreetNumber.Text) ;
-            Cache cache = Cache.Instance;
+            
             cache.Update();
             cache.NotifyPropertyChanged("SiteCache");
         }
