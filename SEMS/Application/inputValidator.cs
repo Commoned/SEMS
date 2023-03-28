@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 namespace SEMS.Application
 {
 
-    interface IValidationStrategy
+    public interface IValidationStrategy
     {
         bool IsValid(string input);
     }
-    class InputValidator
+    public class InputValidator
     {
         private readonly IValidationStrategy _strategy;
 
@@ -27,7 +27,7 @@ namespace SEMS.Application
             return _strategy.IsValid(input);
         }
     }
-    class ZipcodeValidator : IValidationStrategy
+    public class ZipcodeValidator : IValidationStrategy
     {
         public bool IsValid(string zipCode)
         {
@@ -37,7 +37,7 @@ namespace SEMS.Application
         }
     }
 
-    class NameValidator : IValidationStrategy
+    public class NameValidator : IValidationStrategy
     {
         public bool IsValid(string name)
         {
@@ -47,7 +47,7 @@ namespace SEMS.Application
         }
     }
 
-    class StreetNumberValidator : IValidationStrategy
+    public class StreetNumberValidator : IValidationStrategy
     {
         public bool IsValid(string streetnumber)
         {
@@ -56,7 +56,7 @@ namespace SEMS.Application
             return regex.IsMatch(streetnumber);
         }
     }
-    class ThreeUpperValidator : IValidationStrategy
+    public class ThreeUpperValidator : IValidationStrategy
     {
         public bool IsValid(string upper)
         {
@@ -66,7 +66,7 @@ namespace SEMS.Application
         }
     }
 
-    class SalaryValidator : IValidationStrategy
+    public class SalaryValidator : IValidationStrategy
     {
         public bool IsValid(string salary)
         {
