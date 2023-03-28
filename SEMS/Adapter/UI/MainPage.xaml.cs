@@ -29,11 +29,12 @@ namespace SEMS.Adapter
     /// </summary>
     public partial class MainPage : Window,GuiAdapter
     {
-        
+        Database database = new Database();
+        Cache cache;
         public MainPage()
         {
             InitializeComponent();
-            
+            cache = new Cache(database);
         }
 
         public void invokeGUI()
@@ -53,7 +54,6 @@ namespace SEMS.Adapter
         private void openNextPage(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            Database database = new Database();
             string type;
             switch (button.Name)
             {
@@ -62,7 +62,7 @@ namespace SEMS.Adapter
                     
                     Window empWindow = new Window{
                         Title = "SEMS - Employees",
-                        Content = new EmployeePage(new EmployeeManagement(database))
+                        Content = new EmployeePage(new EmployeeManagement(database),cache)
                     };
                     empWindow.Show();
 
@@ -72,7 +72,7 @@ namespace SEMS.Adapter
                     Window siteWindow = new Window
                     {
                         Title = "SEMS - Sites",
-                        Content = new SitePage()
+                        Content = new SitePage(cache)
                     };
                     siteWindow.Show();
 
@@ -82,7 +82,7 @@ namespace SEMS.Adapter
                     Window depWindow = new Window
                     {
                         Title = "SEMS - Departments",
-                        Content = new DepartmentPage()
+                        Content = new DepartmentPage(new DepartmentManagement(database), cache)
                     };
                     depWindow.Show();
 
@@ -92,7 +92,7 @@ namespace SEMS.Adapter
                     Window roleWindow =  new Window
                     {
                         Title = "SEMS - Roles",
-                        Content = new RolePage()
+                        Content = new RolePage(cache)
                     };
                     roleWindow.Show();
                     break;

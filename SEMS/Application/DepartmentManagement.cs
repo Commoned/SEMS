@@ -10,28 +10,38 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection.Emit;
 using System.Security.Policy;
+using System.Collections.ObjectModel;
 
 namespace SEMS.Application
 {
-    internal static class DepartmentManagement
+    public class DepartmentManagement
     {
-        static DataHandler dataHandler = new Database();
+        DataHandler dataHandler;
         
+        public DepartmentManagement(DataHandler dataInterface)
+        {
+            dataHandler = dataInterface;
+        }
 
-        public static bool newDepartment(string name, string descr, string accountingUnit)
+        public ObservableCollection<Department> GetDepartments(string name)
+        {
+            return dataHandler.getDepartmentsByName(name);
+        }
+
+        public bool newDepartment(string name, string descr, string accountingUnit)
         {
             Debug.Write("Creating Dept");
             Department newDept = new Department(name,descr,accountingUnit);
             dataHandler.addDepartment(newDept);
             return true;
         }
-        public static bool updateDepartment(Department updateDept)
+        public bool updateDepartment(Department updateDept)
         {
             dataHandler.updateDepartment(updateDept);
 
             return true;
         }
-        public static bool deleteDepartment(Department deleteDept)
+        public bool deleteDepartment(Department deleteDept)
         {
             
             if(dataHandler.getEmployeesByDepartmentId(deleteDept.Id).Count != 0)

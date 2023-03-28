@@ -7,17 +7,19 @@ using System.Collections.ObjectModel;
 namespace SEMSTests
 {
     [TestClass]
-    public class EmployeeManagementTests
+    public class DepartmentManagementTests
     {
         [TestMethod]
-        public void GetAllEmployees_ValidInput_ReturnsCorrectResult()
+        public void GetAllDepartments_ReturnsCorrectResult()
         {
+            // Capture
             var mock = new Mock<DataHandler>();
             ObservableCollection<Employee> employees = new ObservableCollection<Employee> 
             {
                employee_Max_Mustermann()
             };
             mock.Setup(p => p.getEmployeesByName("")).Returns(employees);
+            
             // Arrange
             EmployeeManagement target = new EmployeeManagement(mock.Object);
             
@@ -28,6 +30,9 @@ namespace SEMSTests
             // Assert
             Assert.AreEqual(actual_employee.Name, employees[0].Name);
             Assert.AreEqual(actual_employee.Surname, employees[0].Surname);
+
+            //Verify
+            mock.Verify();
         }
 
       

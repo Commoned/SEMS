@@ -31,19 +31,19 @@ namespace SEMS.Adapter.UI
     {
         DataHandler dataHandler = new Database();
         EmployeeManagement employeeManagement;
+        Cache cache;
 
-        public EmployeePage(EmployeeManagement employeeManagement)
+        public EmployeePage(EmployeeManagement employeeManagement, Cache cache)
         {
             InitializeComponent();
-            this.DataContext = Cache.Instance;
+            this.DataContext = cache;
             this.employeeManagement = employeeManagement;
+            this.cache = cache;
         }
        
         
         private void searchData(object sender, RoutedEventArgs e)
-        {
-            Cache cache = Cache.Instance;
-            Debug.WriteLine(cache.EmployeeCache);
+        { 
         }
         
         private void employeeList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -94,7 +94,6 @@ namespace SEMS.Adapter.UI
             selectedEmployee.Role = dataHandler.getRolesByName(cmbRole.Text).ElementAt(0);
             new Salary(decimal.Parse(boxSalary.Text), 0, 0, boxCurrency.Text);
             employeeManagement.updateEmployee(selectedEmployee);
-            Cache cache = Cache.Instance;
             cache.Update();
             cache.NotifyPropertyChanged("EmployeeCache");
         }
@@ -119,7 +118,7 @@ namespace SEMS.Adapter.UI
                 dataHandler.getDepartmentsByName(cmbDepartment.Text).ElementAt(0),
                 dataHandler.getRolesByName(cmbRole.Text).ElementAt(0),
                 new Salary(decimal.Parse(boxSalary.Text), 0, 0, boxCurrency.Text));
-            Cache cache = Cache.Instance;
+                
             cache.Update();
             cache.NotifyPropertyChanged("EmployeeCache");
         }
@@ -128,7 +127,6 @@ namespace SEMS.Adapter.UI
         {
             Employee selectedEmployee = (Employee)employeeList.SelectedItem;
             employeeManagement.deleteEmployee(selectedEmployee);
-            Cache cache = Cache.Instance;
             cache.Update();
             cache.NotifyPropertyChanged("EmployeeCache");
         }

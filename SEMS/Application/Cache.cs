@@ -13,15 +13,11 @@ namespace SEMS.Application
 {
     public sealed class Cache : INotifyPropertyChanged
     {
-        private static readonly Lazy<Cache> lazy =
-            new Lazy<Cache>(() => new Cache());
+        private readonly DataHandler database;
 
-        public static Cache Instance { get { return lazy.Value; } }
-
-        private static readonly DataHandler database = new Database();
-
-        private Cache()
+        public Cache(DataHandler dataHandler)
         {
+            database = dataHandler;
         }
         
         public ObservableCollection<Employee> EmployeeCache {
