@@ -23,7 +23,12 @@ namespace SEMS.Application
         string provideNonNumericId();
     }
 
-    public interface DataHandler
+    public interface DataHandler : EmployeeHandler, DepartmentHandler, SiteHandler, RoleHandler
+    {
+
+    }
+
+    public interface EmployeeHandler
     {
         Privilege getPrivilegeByName(string name);
         Employee getEmployeeById(int id);
@@ -34,38 +39,54 @@ namespace SEMS.Application
         ObservableCollection<Employee> getEmployeesByDepartmentId(int departmentId);
         ObservableCollection<Employee> getEmployeesByRoleId(int roleId);
         User getUser(Employee employee);
+        bool deleteEmployee(Employee employee);
+        bool deleteUser(User user);
+        bool updateEmployee(Employee employee);
+        bool updateUser(User user);
+
+        bool addEmployee(Employee employee);
+        bool addUser(User user);
+    }
+
+    public interface DepartmentHandler
+    {
         Department getDepartmentById(int id);
+        ObservableCollection<Employee> getEmployeesByDepartmentId(int departmentId);
         ObservableCollection<Department> getDepartmentsByName(string name);
         ObservableCollection<Department> getDepartmentsByAccountingUnit(string accountingunit);
+        bool deleteDepartment(Department department);
+        bool updateDepartment(Department department);
+        bool addDepartment(Department department);
+    }
+
+    public interface SiteHandler
+    {
         Domain.Site getSiteById(int id);
+        ObservableCollection<Employee> getEmployeesBySiteId(int siteId);
         ObservableCollection<Domain.Site> getSitesByName(string name);
         ObservableCollection<Domain.Site> getSitesByCountry(string country);
         ObservableCollection<Domain.Site> getSitesByState(string state);
         ObservableCollection<Domain.Site> getSitesByZipcode(string zipcode);
+        bool deleteSite(Domain.Site site);
+        bool updateSite(Domain.Site site);
+        bool addSite(Domain.Site site);
+    }
+
+    public interface RoleHandler
+    {
         Role getRoleById(int id);
         ObservableCollection<Role> getRolesByName(string name);
-
-        bool addEmployee(Employee employee);
-        bool addUser(User user);
-        bool addDepartment(Department department);
-        bool addSite(Domain.Site site);
         bool addRole(Role role);
-
-        bool updateEmployee(Employee employee);
-        bool updateUser(User user);
-        bool updateDepartment(Department department);
-        bool updateSite(Domain.Site site);
         bool updateRole(Role role);
-
-        bool deleteEmployee(Employee employee);
-        bool deleteUser(User user);
-        bool deleteDepartment(Department department);
-        bool deleteSite(Domain.Site site);
         bool deleteRole(Role role);
+        ObservableCollection<Employee> getEmployeesByRoleId(int roleId);
     }
+
+
+
     public class EmployeeManagement
     {
-        DataHandler dataHandler;
+        EmployeeHandler dataHandler;
 
         public EmployeeManagement(DataHandler dataInterface)
         {
