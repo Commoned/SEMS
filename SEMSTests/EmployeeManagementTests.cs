@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 namespace SEMSTests
 {
     [TestClass]
-    public class DepartmentManagementTests
+    public class EmployeeManagementTests
     {
         [TestMethod]
         public void GetAllDepartments_ReturnsCorrectResult()
