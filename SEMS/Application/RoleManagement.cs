@@ -13,7 +13,7 @@ namespace SEMS.Application
 {
     internal static class RoleManagement
     {
-        static DataHandler dataHandler = new Database();
+        static RoleHandler dataHandler = new Database();
        
 
         public static bool newRole(string name, string descr)

@@ -16,7 +16,7 @@ namespace SEMS.Application
 {
     public class DepartmentManagement
     {
-        DataHandler dataHandler;
+        DepartmentHandler dataHandler;
         
         public DepartmentManagement(DataHandler dataInterface)
         {

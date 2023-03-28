@@ -11,7 +11,7 @@ namespace SEMS.Application
 {
     internal static class SiteManagement
     {
-        static DataHandler dataHandler = new Database();
+        static SiteHandler dataHandler = new Database();
 
 
         public static bool newSite(string name, string country, string state,string zipcode,string city, string street, string streetnumber)
