@@ -1,12 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using SEMS.Domain;
+using SEMS.Adapter;
+using Moq;
+using System.ComponentModel.DataAnnotations;
 
 namespace SEMSTests
 {
-    internal class DatabaseTests
+    [TestClass]
+    class DatabaseTests
     {
+        [TestMethod]
+        public void GetEmployees_byName_Test()
+        {
+            var mock = new Mock<Database>();
+            // Arrange
+
+            // Act 
+
+            // Assert
+        }
     }
 }

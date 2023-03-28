@@ -12,7 +12,7 @@ using System.Collections.ObjectModel;
 
 namespace SEMS.Adapter
 {
-    internal class Database : DataHandler
+    public class Database : DataHandler
     {
         private string dblocation = "Data Source = ..\\..\\..\\Adapter\\Database\\sems.sqlite";
         public Database()
