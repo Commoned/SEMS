@@ -1,4 +1,5 @@
-﻿using SEMS.Adapter.UI;
+﻿using SEMS.Adapter.Database;
+using SEMS.Adapter.UI;
 using SEMS.Application;
 using System;
 using System.Collections.Generic;
@@ -29,17 +30,18 @@ namespace SEMS.Adapter
     /// </summary>
     public partial class MainPage : Window,GuiAdapter
     {
-        Database database = new Database();
+        DataHandler database;
         Cache cache;
-        public MainPage()
+        public MainPage(DataHandler dataHandler)
         {
             InitializeComponent();
+            database = dataHandler;
             cache = new Cache(database);
         }
 
         public void invokeGUI()
         {
-            Window window = new MainPage();
+            Window window = new MainPage(database);
             window.ShowDialog();
         }
         

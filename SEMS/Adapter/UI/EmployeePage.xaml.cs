@@ -21,6 +21,7 @@ using System.Runtime.CompilerServices;
 using SEMS.Application;
 using System.Security.Cryptography;
 using System.Windows.Controls.Primitives;
+using SEMS.Adapter.Database;
 
 namespace SEMS.Adapter.UI
 {
@@ -29,7 +30,7 @@ namespace SEMS.Adapter.UI
     /// </summary>
     public partial class EmployeePage : UserControl
     {
-        DataHandler dataHandler = new Database();
+        DataHandler dataHandler = new DatabaseFacade();
         EmployeeManagement employeeManagement;
         Cache cache;
 
