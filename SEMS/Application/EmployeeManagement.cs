@@ -51,7 +51,6 @@ namespace SEMS.Application
     public interface DepartmentHandler
     {
         Department getDepartmentById(int id);
-        ObservableCollection<Employee> getEmployeesByDepartmentId(int departmentId);
         ObservableCollection<Department> getDepartmentsByName(string name);
         ObservableCollection<Department> getDepartmentsByAccountingUnit(string accountingunit);
         bool deleteDepartment(Department department);
@@ -62,7 +61,6 @@ namespace SEMS.Application
     public interface SiteHandler
     {
         Domain.Site getSiteById(int id);
-        ObservableCollection<Employee> getEmployeesBySiteId(int siteId);
         ObservableCollection<Domain.Site> getSitesByName(string name);
         ObservableCollection<Domain.Site> getSitesByCountry(string country);
         ObservableCollection<Domain.Site> getSitesByState(string state);
@@ -79,7 +77,6 @@ namespace SEMS.Application
         bool addRole(Role role);
         bool updateRole(Role role);
         bool deleteRole(Role role);
-        ObservableCollection<Employee> getEmployeesByRoleId(int roleId);
     }
 
 
