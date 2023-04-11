@@ -27,7 +27,7 @@ namespace SEMSTests
             // Arrange
             var strategy = new ZipcodeValidator();
             var validator = new InputValidator(strategy);
-            string input = "ABCDE";
+            string input = "Not-A-Zipcode";
 
             // Act
             bool result = validator.Validate(input);

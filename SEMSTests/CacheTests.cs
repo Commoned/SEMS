@@ -63,7 +63,11 @@ namespace SEMSTests
             //Verify
             mock.Verify();
         }
-
+        public Department department_Sales()
+        {
+            Department dept = new Department("Sales", "Does Sales.", "0001");
+            return dept;
+        }
 
         public Employee employee_Max_Mustermann()
         {
@@ -72,10 +76,6 @@ namespace SEMSTests
             return employee;
         }
 
-        public Department department_Sales()
-        {
-            Department dept = new Department("Sales","Does Sales.","0001");
-            return dept;
-        }
+       
     }
 }
