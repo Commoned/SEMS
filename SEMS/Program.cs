@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using SEMS.Adapter;
+using SEMS.Adapter.Database;
 using SEMS.Application;
 using SEMS.Domain;
 
@@ -19,7 +20,9 @@ namespace SEMS
         [STAThread]
         static public void Main(String[] args)
         {
-            GuiAdapter page = new MainPage();
+            DataHandler handler = new DatabaseFacade();
+
+            GuiAdapter page = new MainPage(handler);
             
             page.invokeGUI();
         }
