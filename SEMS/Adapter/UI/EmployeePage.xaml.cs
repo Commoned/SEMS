@@ -131,54 +131,41 @@ namespace SEMS.Adapter.UI
             cache.NotifyPropertyChanged("EmployeeCache");
         }
 
+        private Dictionary<string, IValidationStrategy> validationStrategies = new Dictionary<string, IValidationStrategy>()
+        {
+            { "boxCity", new NameValidator() },
+            { "boxName", new NameValidator() },
+            { "boxStateProvince", new NameValidator() },
+            { "boxStreet", new NameValidator() },
+            { "boxSurname", new NameValidator() },
+            { "boxCurrency", new ThreeUpperValidator() },
+            { "boxCountry", new ThreeUpperValidator() },
+            { "boxStreetNumber", new StreetNumberValidator() },
+            { "boxZipcode", new ZipcodeValidator() },
+            { "boxSalary", new SalaryValidator() }
+            };
+
         private void validateInput(object sender, KeyEventArgs e)
         {
-            IValidationStrategy strategy;
-            InputValidator validator ;
             TextBox textBox = (TextBox)sender;
-            List<TextBox> textInputs = new List<TextBox> { boxCity, boxName, boxStateProvince, boxStreet, boxSurname};
-            List<TextBox> threeUpper = new List<TextBox> { boxCurrency, boxCountry };
-            if (textInputs.Contains(sender))
+            SolidColorBrush black = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            SolidColorBrush red = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+            IValidationStrategy strategy = validationStrategies[textBox.Name];
+            if (IsValidInput(textBox, strategy))
             {
-                strategy = new NameValidator();
-                validator = new InputValidator(strategy);
-                bool isValid = validator.Validate(textBox.Text);
-                if (!isValid) { textBox.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0)); }
-                else { textBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0)); }
+                textBox.Foreground = black;
             }
-            if (threeUpper.Contains(sender))
+            else
             {
-                strategy = new ThreeUpperValidator();
-                validator = new InputValidator(strategy);
-                bool isValid = validator.Validate(textBox.Text);
-                if (!isValid) { textBox.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0)); }
-                else { textBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0)); }
+                textBox.Foreground = red;
             }
-            if (sender == boxStreetNumber)
-            {
-                strategy = new StreetNumberValidator();
-                validator = new InputValidator(strategy);
-                bool isValid = validator.Validate(textBox.Text);
-                if (!isValid) { textBox.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0)); }
-                else { textBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0)); }
-            }
-            if (sender == boxZipcode)
-            {
-                strategy = new ZipcodeValidator();
-                validator = new InputValidator(strategy);
-                bool isValid = validator.Validate(textBox.Text);
-                if (!isValid) { textBox.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0)); }
-                else { textBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0)); }
-            }
-            if (sender == boxSalary)
-            {
-                strategy = new SalaryValidator();
-                validator = new InputValidator(strategy);
-                bool isValid = validator.Validate(textBox.Text);
-                if (!isValid) { textBox.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0)); }
-                else { textBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0)); }
-            }
+        }
 
+        private bool IsValidInput(TextBox textBox, IValidationStrategy strategy)
+        {
+            InputValidator validator = new InputValidator(strategy);
+            bool isValid = validator.Validate(textBox.Text);
+            return isValid;
         }
     }
 }
