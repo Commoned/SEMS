@@ -27,9 +27,9 @@ namespace SEMS.Application
             return _strategy.IsValid(input);
         }
     }
-    public class ZipcodeValidator : IValidationStrategy
+    public class ZipcodeValidator
     {
-        public bool IsValid(string zipCode)
+        public static bool IsValid(string zipCode)
         {
             string pattern = @"^[0-9]{5}$";
             Regex regex = new Regex(pattern);
@@ -37,9 +37,9 @@ namespace SEMS.Application
         }
     }
 
-    public class NameValidator : IValidationStrategy
+    public class NameValidator
     {
-        public bool IsValid(string name)
+        public static bool IsValid(string name)
         {
             string pattern = @"^[\p{L} -]+$";
             Regex regex = new(pattern);
@@ -47,18 +47,18 @@ namespace SEMS.Application
         }
     }
 
-    public class StreetNumberValidator : IValidationStrategy
+    public class StreetNumberValidator
     {
-        public bool IsValid(string streetnumber)
+        public static bool IsValid(string streetnumber)
         {
             string pattern = @"^\d+[A-Za-z]?$";
             Regex regex = new(pattern);
             return regex.IsMatch(streetnumber);
         }
     }
-    public class ThreeUpperValidator : IValidationStrategy
+    public class ThreeUpperValidator
     {
-        public bool IsValid(string upper)
+        public static bool IsValid(string upper)
         {
             string pattern = @"^[A-Z]{3}$";
             Regex regex = new(pattern);
@@ -66,9 +66,9 @@ namespace SEMS.Application
         }
     }
 
-    public class SalaryValidator : IValidationStrategy
+    public class SalaryValidator 
     {
-        public bool IsValid(string salary)
+        public static bool IsValid(string salary)
         {
             return decimal.TryParse(salary, out _ );
         }

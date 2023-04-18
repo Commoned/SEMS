@@ -131,27 +131,29 @@ namespace SEMS.Adapter.UI
             cache.NotifyPropertyChanged("EmployeeCache");
         }
 
-        private Dictionary<string, IValidationStrategy> validationStrategies = new Dictionary<string, IValidationStrategy>()
+        private Dictionary<string, Func<string,bool>> validationStrategiesFunctions = new Dictionary<string, Func<string, bool>>()
         {
-            { "boxCity", new NameValidator() },
-            { "boxName", new NameValidator() },
-            { "boxStateProvince", new NameValidator() },
-            { "boxStreet", new NameValidator() },
-            { "boxSurname", new NameValidator() },
-            { "boxCurrency", new ThreeUpperValidator() },
-            { "boxCountry", new ThreeUpperValidator() },
-            { "boxStreetNumber", new StreetNumberValidator() },
-            { "boxZipcode", new ZipcodeValidator() },
-            { "boxSalary", new SalaryValidator() }
-            };
+            { "boxCity", NameValidator.IsValid},
+            { "boxName", NameValidator.IsValid},
+            { "boxStateProvince", NameValidator.IsValid },
+            { "boxStreet", NameValidator.IsValid },
+            { "boxSurname", NameValidator.IsValid },
+            { "boxCurrency",ThreeUpperValidator.IsValid },
+            { "boxCountry",ThreeUpperValidator.IsValid },
+            { "boxStreetNumber",StreetNumberValidator.IsValid  },
+            { "boxZipcode", ZipcodeValidator.IsValid },
+            { "boxSalary", SalaryValidator.IsValid }
+        };
+
 
         private void validateInput(object sender, KeyEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
             SolidColorBrush black = new SolidColorBrush(Color.FromRgb(0, 0, 0));
             SolidColorBrush red = new SolidColorBrush(Color.FromRgb(255, 0, 0));
-            IValidationStrategy strategy = validationStrategies[textBox.Name];
-            if (IsValidInput(textBox, strategy))
+            Func<string, bool> function;
+            validationStrategiesFunctions.TryGetValue(textBox.Name, out function);
+            if (function.Invoke(textBox.Text))
             {
                 textBox.Foreground = black;
             }
@@ -159,13 +161,6 @@ namespace SEMS.Adapter.UI
             {
                 textBox.Foreground = red;
             }
-        }
-
-        private bool IsValidInput(TextBox textBox, IValidationStrategy strategy)
-        {
-            InputValidator validator = new InputValidator(strategy);
-            bool isValid = validator.Validate(textBox.Text);
-            return isValid;
         }
     }
 }

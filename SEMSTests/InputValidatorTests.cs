@@ -10,12 +10,10 @@ namespace SEMSTests
         public void Validate_ValidZipCode_ReturnsTrue()
         {
             // Arrange
-            var strategy = new ZipcodeValidator();
-            var validator = new InputValidator(strategy);
             string input = "12345";
 
             // Act
-            bool result = validator.Validate(input);
+            bool result = ZipcodeValidator.IsValid(input);
 
             // Assert
             Assert.IsTrue(result);
@@ -25,12 +23,10 @@ namespace SEMSTests
         public void Validate_InvalidZipCode_ReturnsFalse()
         {
             // Arrange
-            var strategy = new ZipcodeValidator();
-            var validator = new InputValidator(strategy);
             string input = "Not-A-Zipcode";
 
             // Act
-            bool result = validator.Validate(input);
+            bool result = ZipcodeValidator.IsValid(input);
 
             // Assert
             Assert.IsFalse(result);
@@ -40,11 +36,10 @@ namespace SEMSTests
         public void NameValidator_ValidInput_ReturnsTrue()
         {
             // Arrange
-            var validator = new InputValidator(new NameValidator());
             string input = "Daniel Ringler";
 
             // Act
-            bool result = validator.Validate(input);
+            bool result = NameValidator.IsValid(input);
 
             // Assert
             Assert.IsTrue(result);
@@ -54,11 +49,10 @@ namespace SEMSTests
         public void NameValidator_InvalidInput_ReturnsFalse()
         {
             // Arrange
-            var validator = new InputValidator(new NameValidator());
             string input = "Tim.F123";
 
             // Act
-            bool result = validator.Validate(input);
+            bool result = NameValidator.IsValid(input);
 
             // Assert
             Assert.IsFalse(result);
@@ -68,11 +62,10 @@ namespace SEMSTests
         public void StreetNumberValidator_ValidInput_ReturnsTrue()
         {
             // Arrange
-            var validator = new InputValidator(new StreetNumberValidator());
             string input = "123A";
 
             // Act
-            bool result = validator.Validate(input);
+            bool result = StreetNumberValidator.IsValid(input);
 
             // Assert
             Assert.IsTrue(result);
@@ -82,11 +75,10 @@ namespace SEMSTests
         public void StreetNumberValidator_InvalidInput_ReturnsFalse()
         {
             // Arrange
-            var validator = new InputValidator(new StreetNumberValidator());
             string input = "A123";
 
             // Act
-            bool result = validator.Validate(input);
+            bool result = StreetNumberValidator.IsValid(input);
 
             // Assert
             Assert.IsFalse(result);
@@ -96,11 +88,10 @@ namespace SEMSTests
         public void ThreeUpperValidator_ValidInput_ReturnsTrue()
         {
             // Arrange
-            var validator = new InputValidator(new ThreeUpperValidator());
             string input = "EUR";
 
             // Act
-            bool result = validator.Validate(input);
+            bool result = ThreeUpperValidator.IsValid(input);
 
             // Assert
             Assert.IsTrue(result);
@@ -110,11 +101,10 @@ namespace SEMSTests
         public void ThreeUpperValidator_InvalidInput_ReturnsFalse()
         {
             // Arrange
-            var validator = new InputValidator(new ThreeUpperValidator());
             string input = "ABCD2";
 
             // Act
-            bool result = validator.Validate(input);
+            bool result = ThreeUpperValidator.IsValid(input);
 
             // Assert
             Assert.IsFalse(result);
@@ -124,11 +114,10 @@ namespace SEMSTests
         public void SalaryValidator_ValidInput_ReturnsTrue()
         {
             // Arrange
-            var validator = new InputValidator(new SalaryValidator());
             string input = "10,10";
 
             // Act
-            bool result = validator.Validate(input);
+            bool result = SalaryValidator.IsValid(input);
 
             // Assert
             Assert.IsTrue(result);
