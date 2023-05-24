@@ -8,12 +8,13 @@ using SEMS.Domain;
 using SEMS.Adapter;
 using System.Diagnostics;
 using System.Security.Cryptography;
+using SEMS.Adapter.Database;
 
 namespace SEMS.Application
 {
     internal static class RoleManagement
     {
-        static RoleHandler dataHandler = new Database();
+        static RoleHandler dataHandler = new DatabaseFacade();
        
 
         public static bool newRole(string name, string descr)
