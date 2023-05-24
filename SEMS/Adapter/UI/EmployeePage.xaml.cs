@@ -132,54 +132,36 @@ namespace SEMS.Adapter.UI
             cache.NotifyPropertyChanged("EmployeeCache");
         }
 
+        private Dictionary<string, Func<string,bool>> validationStrategiesFunctions = new Dictionary<string, Func<string, bool>>()
+        {
+            { "boxCity", NameValidator.IsValid},
+            { "boxName", NameValidator.IsValid},
+            { "boxStateProvince", NameValidator.IsValid },
+            { "boxStreet", NameValidator.IsValid },
+            { "boxSurname", NameValidator.IsValid },
+            { "boxCurrency",ThreeUpperValidator.IsValid },
+            { "boxCountry",ThreeUpperValidator.IsValid },
+            { "boxStreetNumber",StreetNumberValidator.IsValid  },
+            { "boxZipcode", ZipcodeValidator.IsValid },
+            { "boxSalary", SalaryValidator.IsValid }
+        };
+
+
         private void validateInput(object sender, KeyEventArgs e)
         {
-            IValidationStrategy strategy;
-            InputValidator validator ;
             TextBox textBox = (TextBox)sender;
-            List<TextBox> textInputs = new List<TextBox> { boxCity, boxName, boxStateProvince, boxStreet, boxSurname};
-            List<TextBox> threeUpper = new List<TextBox> { boxCurrency, boxCountry };
-            if (textInputs.Contains(sender))
+            SolidColorBrush black = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            SolidColorBrush red = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+            Func<string, bool> function;
+            validationStrategiesFunctions.TryGetValue(textBox.Name, out function);
+            if (function.Invoke(textBox.Text))
             {
-                strategy = new NameValidator();
-                validator = new InputValidator(strategy);
-                bool isValid = validator.Validate(textBox.Text);
-                if (!isValid) { textBox.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0)); }
-                else { textBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0)); }
+                textBox.Foreground = black;
             }
-            if (threeUpper.Contains(sender))
+            else
             {
-                strategy = new ThreeUpperValidator();
-                validator = new InputValidator(strategy);
-                bool isValid = validator.Validate(textBox.Text);
-                if (!isValid) { textBox.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0)); }
-                else { textBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0)); }
+                textBox.Foreground = red;
             }
-            if (sender == boxStreetNumber)
-            {
-                strategy = new StreetNumberValidator();
-                validator = new InputValidator(strategy);
-                bool isValid = validator.Validate(textBox.Text);
-                if (!isValid) { textBox.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0)); }
-                else { textBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0)); }
-            }
-            if (sender == boxZipcode)
-            {
-                strategy = new ZipcodeValidator();
-                validator = new InputValidator(strategy);
-                bool isValid = validator.Validate(textBox.Text);
-                if (!isValid) { textBox.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0)); }
-                else { textBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0)); }
-            }
-            if (sender == boxSalary)
-            {
-                strategy = new SalaryValidator();
-                validator = new InputValidator(strategy);
-                bool isValid = validator.Validate(textBox.Text);
-                if (!isValid) { textBox.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0)); }
-                else { textBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0)); }
-            }
-
         }
     }
 }
