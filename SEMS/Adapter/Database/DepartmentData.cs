@@ -48,6 +48,36 @@ namespace SEMS.Adapter.Database
             return null;
         }
 
+        public ObservableCollection<Employee> getEmployeesByDepartmentId(int departmentId)
+        {
+            ObservableCollection<Employee> employees = new ObservableCollection<Employee>();
+
+            using (var connection = new SqliteConnection(dblocation))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText =
+                @"
+                SELECT employee_id, name, surname, title, privilege, country, state, zipcode, city, street, streetnumber, site_id, department_id, role_id, basesalary, bonus, deduction, currency
+                FROM employees
+                WHERE department_id = $mydepartment_id
+                ";
+
+                command.Parameters.AddWithValue("$mydepartment_id", departmentId);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Employee employee = new Employee(name: reader.GetString(1), surname: reader.GetString(2), title: reader.GetString(3), privilege: new Privilege(reader.GetString(4)), id: reader.GetInt32(0), country: reader.GetString(5), state: reader.GetString(6), zipcode: reader.GetString(7), city: reader.GetString(8), street: reader.GetString(9), streetnumber: reader.GetString(10), site: facade.getSiteById(reader.GetInt32(11)), department: facade.getDepartmentById(reader.GetInt32(12)), role: facade.getRoleById(reader.GetInt32(13)), salary: new Salary(baseSalary: reader.GetDecimal(14), bonuses: reader.GetDecimal(15), deductions: reader.GetDecimal(16), currency: reader.GetString(17)));
+                        employees.Add(employee);
+                    }
+                }
+            }
+            return employees;
+        }
+
         public ObservableCollection<Department> getDepartmentsByName(string name)
         {
             ObservableCollection<Department> departments = new ObservableCollection<Department>();
