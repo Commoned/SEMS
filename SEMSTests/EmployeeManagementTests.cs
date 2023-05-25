@@ -1,7 +1,6 @@
 ﻿
 using SEMS.Domain;
 using Moq;
-using System.ComponentModel.DataAnnotations;
 using System.Collections.ObjectModel;
 
 namespace SEMSTests

@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SEMS.Domain;
-using SEMS.Adapter;
-using System.Data;
 using System.Diagnostics;
-using System.IO;
-using System.Reflection.Emit;
-using System.Security.Policy;
 using System.Collections.ObjectModel;
 
 namespace SEMS.Application

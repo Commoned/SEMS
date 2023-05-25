@@ -1,9 +1,4 @@
-﻿using System.Data;
-using System.Diagnostics.Metrics;
-using System.IO;
-using System.Reflection.Emit;
-using System.Security.Policy;
-using System.Xml.Linq;
+﻿
 namespace SEMS.Domain
 {
     public class User : Employee

@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SEMS.Adapter;
 using SEMS.Adapter.Database;
 using SEMS.Domain;
-using SQLitePCL;
 
 namespace SEMS.Application
 {

@@ -1,6 +1,5 @@
 ﻿
 using SEMS.Domain;
-using System.ComponentModel.DataAnnotations;
 
 namespace SEMSTests
 {
