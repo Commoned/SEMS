@@ -4,17 +4,6 @@ using SEMS.Domain;
 
 namespace SEMS.Application
 {
-    public interface UserEntry
-    {
-        string acceptEntry();
-    }
-
-    public interface IdentificationProvider
-    {
-        int provideId();
-
-        string provideNonNumericId();
-    }
 
     public interface DataHandler : EmployeeHandler, DepartmentHandler, SiteHandler, RoleHandler
     {
