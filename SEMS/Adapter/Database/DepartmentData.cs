@@ -12,7 +12,7 @@ namespace SEMS.Adapter.Database
 {
     public class DepartmentData : DepartmentHandler
     {
-        DatabaseFacade facade;
+        private DatabaseFacade facade;
         private string dblocation;
         public DepartmentData(string dblocation, DatabaseFacade facade)
         {
