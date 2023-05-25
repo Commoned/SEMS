@@ -57,62 +57,53 @@ namespace SEMS.Adapter
         {
             Button button = (Button)sender;
             string type;
-            switch (button.Name)
+            Dictionary<string, Func<Window>> windowContentMap = new Dictionary<string, Func<Window>>()
             {
-                case "employeeButton":
-                    type = "employeeGrid";
-                    
-                    Window empWindow = new Window{
+                { "employeeButton", () => new Window
+                    {
                         Title = "SEMS - Employees",
-                        Content = new EmployeePage(new EmployeeManagement(database),cache)
-                    };
-                    empWindow.Show();
-
-                    break;
-                case "siteButton":
-                    type = "siteGrid";
-                    Window siteWindow = new Window
+                        Content = new EmployeePage(new EmployeeManagement(database), cache)
+                    }
+                },
+                { "siteButton", () => new Window
                     {
                         Title = "SEMS - Sites",
                         Content = new SitePage(cache)
-                    };
-                    siteWindow.Show();
-
-                    break;
-                case "departmentButton":
-                    type = "departmentGrid";
-                    Window depWindow = new Window
+                    }
+                },
+                { "departmentButton", () => new Window
                     {
                         Title = "SEMS - Departments",
                         Content = new DepartmentPage(new DepartmentManagement(database), cache)
-                    };
-                    depWindow.Show();
-
-                    break;
-                case "roleButton":
-                    type = "roleGrid";
-                    Window roleWindow =  new Window
+                    }
+                },
+                { "roleButton", () => new Window
                     {
                         Title = "SEMS - Roles",
                         Content = new RolePage(cache)
-                    };
-                    roleWindow.Show();
-                    break;
-                case "privilegeButton":
-                    Window privWindow = new Window
+                    }
+                },
+                { "privilegeButton", () => new Window
                     {
                         Title = "SEMS - Privileges",
                         Content = new PrivilegePage()
-                    };
-                    privWindow.Show();
-                    break;
-                default:
-                    type = "";
-                    break;
+                    }
+                }
+            };
+
+            if (windowContentMap.ContainsKey(button.Name))
+            {
+                Window window = CreateWindow(windowContentMap[button.Name]);
+                window.Show();
             }
-            
         }
 
-        
+        private Window CreateWindow(Func<Window> createContent)
+        {
+            Window window = createContent.Invoke();
+            return window;
+        }
+
+
     }
 }
