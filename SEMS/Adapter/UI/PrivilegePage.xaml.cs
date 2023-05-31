@@ -9,7 +9,7 @@ namespace SEMS.Adapter.UI
     /// </summary>
     public partial class PrivilegePage : UserControl
     {
-        IdentificationProvider identification = new Identification();
+        
         public PrivilegePage()
         {
             InitializeComponent();

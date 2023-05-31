@@ -1,6 +1,7 @@
 ﻿using SEMS.Adapter.UI;
 using SEMS.Application;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
